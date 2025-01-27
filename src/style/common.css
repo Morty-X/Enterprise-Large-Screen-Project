@@ -1,0 +1,81 @@
+/* =======================头部和尾部的公共样式================= */
+/* 头部 */
+header {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 2000px;
+    height: 91px;
+    background: url(/assets/images/T.png) no-repeat center;
+    background-size: cover;
+    font-family: 'PangMenZhengDao';
+    color: #f1f1f1;
+}
+
+.header-left,
+.header-right {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 510px;
+    font-size: 26px;
+    padding: 6px 30px;
+    color: #4e769f;
+
+}
+
+.header-left span,
+.header-right span {
+    height: 40px;
+}
+
+.header-left span:nth-child(2) {
+    margin-top: 10px;
+}
+
+.header-left span:nth-child(3) {
+    margin-top: 25px;
+    color: #f1f1f1;
+}
+
+.header-center {
+    height: 60px;
+    line-height: 60px;
+    font-size: 40px;
+    color: #ddf7ff;
+}
+
+.header-right {
+    width: 510px;
+}
+
+/* 尾部 */
+footer {
+    position: relative;
+    width: 2000px;
+    height: 62px;
+
+    background: url(/assets/images/D.png) no-repeat center;
+    background-size: cover;
+    font-family: 'PangMenZhengDao';
+}
+
+.header-right span:nth-child(1) {
+    margin-top: 25px;
+}
+
+.header-right span:nth-child(2) {
+    margin-top: 10px;
+}
+
+.footerInfo {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    font-size: 20px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    color: #f1f1f1;
+}

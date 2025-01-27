@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>visual数字企业大数据监管平台</title>
+    <link rel="stylesheet" href="src/style/common.css">
+    <script src="src/js/echarts.min.js"></script>
+    <script src="src/js/echarts-gl.min.js"></script>
+    <script src="src/js/echarts-liquidfill.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        /* 加载一个本地字体 */
+        /* 字体格式文件 */
+        @font-face {
+            font-family: 'PangMenZhengDao';
+            src: url('/assets/fonts/PangMenZhengDao.ttf') format("trueType");
+        }
+
+        @font-face {
+            font-family: 'YouShe';
+            src: url('/assets/fonts/YouShe.ttf') format("trueType");
+        }
+
+        @font-face {
+            font-family: 'Oswald';
+            src: url('/assets/fonts/Oswald.ttf') format("trueType");
+        }
+
+        .container {
+            width: 2000px;
+            background: #000;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .mainBody {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main,
+        .bg {
+            width: 2000px;
+            height: 750px;
+        }
+
+        .main {
+            display: flex;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 99;
+        }
+
+        .bg {
+            position: relative;
+        }
+
+        .bg-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9;
+        }
+
+        .bg-bottom {
+            perspective: 500px;
+        }
+
+        .bg-bottom>video {
+            transform: rotate3d(1, 0, 0, 70deg);
+        }
+
+        .main-item {
+            flex: 1;
+            height: 750px;
+        }
+
+        .left {
+        }
+
+        .right {
+        }
+
+        .center {
+            flex: unset;
+            width: 980px;
+            position: relative;
+            /* background: #9d4343; */
+        }
+
+        .panel {
+            position: absolute;
+            width: 271px;
+            height: 63px;
+            background-repeat: no-repeat;
+            font-family: 'Oswald';
+            line-height: 63px;
+            font-size: 28px;
+            font-weight: 800;
+            color: #23f9ff;
+            text-indent: 146px;
+        }
+
+        .topL {
+            text-indent: 126px;
+            line-height: 50px;
+            top: 140px;
+            left: 100px;
+            background-image: url(./assets/images/工业.png);
+        }
+
+        .bottomL {
+            text-indent: 136px;
+            line-height: 72px;
+
+            bottom: 140px;
+            left: 100px;
+            background-image: url(./assets/images/商贸.png);
+        }
+
+        .cen {
+            text-indent: 146px;
+            line-height: 50px;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            background-image: url(./assets/images/企业.png);
+        }
+
+        .righrL {
+
+            text-indent: 126px;
+            line-height: 50px;
+
+            top: 140px;
+            right: 100px;
+            background-image: url(./assets/images/投资.png);
+        }
+
+        .bottomR {
+            line-height: 72px;
+            text-indent: 144px;
+            bottom: 140px;
+            right: 100px;
+            background-image: url(./assets/images/金融.png);
+        }
+
+        .arc {
+            position: absolute;
+            width: 90px;
+            height: 400px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        /* 中间部分左右圆弧 */
+        .left-Arc {
+            left: 0;
+            background-image: url(assets/images/L.png);
+        }
+
+        .right-Arc {
+            right: 0;
+            background-image: url(assets/images/R.png);
+        }
+
+        /* 左侧部分 表格标题 */
+        .title-L {
+            color: #fff;
+            width: 510px;
+            height: 50px;
+            line-height: 50px;
+            text-indent: 126px;
+            font-family: 'PangMenZhengDao';
+            background: url(assets/images/title.png) no-repeat;
+            background-size: cover;
+        }
+
+        .left-content {
+            display: inline-flex;
+            color: #fff;
+            height: 200px;
+            width: 510px;
+            /* background-color: antiquewhite; */
+        }
+
+        .dR-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dR-ins-panel {
+            width: 80px;
+            height: 80px;
+            background: url(assets/images/左1.png) no-repeat center;
+        }
+
+        .dR-ins-panel-con {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            font-family: 'Oswald';
+            background: url(assets/images/上扫描.png) no-repeat center;
+        }
+
+        .dR-ins-gold {
+            display: inline-flex;
+            align-items: center;
+            width: 215px;
+            height: 200px;
+
+        }
+
+        .dR-ins-gold-con {
+            width: 80px;
+            height: 80px;
+            background: url(assets/images/黄底座.png) no-repeat;
+            background-position: 0px;
+        }
+
+        .dR-ins-gold-con img {
+            margin-left: 24px;
+        }
+
+        .yellow-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .dR-ins-trend {
+            display: flex;
+            width: 215px;
+            align-items: center;
+            height: 200px;
+
+
+        }
+
+        .dR-ins-trend-con {
+            display: inline-flex;
+            width: 215px;
+            height: 80px;
+            background: url(assets/images/蓝底座.png) no-repeat center;
+            background-position: -8px -40px;
+        }
+
+        .dR-ins-trend img {
+            margin-left: 16px;
+        }
+
+        .dR-ins-info {
+            height: 100%;
+            margin-left: 20px;
+        }
+
+        .dR-ins-info-total {
+            height: 56px;
+            line-height: 56px;
+        }
+
+        .dR-ins-info-total b {
+            padding: 0 4px;
+            font-size: 28px;
+            font-weight: 600;
+            font-family: 'Oswald';
+        }
+
+        .subTitle {
+            font-size: 18px;
+            font-family: 'PangMenZhengDao';
+            display: block;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        /* 资金周转率 */
+        #turnoverRate-graph {
+            height: 200px;
+            width: 510px;
+        }
+
+        /* 银行占比情况 */
+        .left-content-R {
+            padding: 18px 26px;
+            width: 330px;
+            height: 200px;
+            font-size: 14px;
+
+        }
+
+        .left-content-R p {
+            float: left;
+            width: 50%;
+            height: 50px;
+            line-height: 50px;
+
+        }
+
+        .left-content-R p:nth-child(even) {
+            text-align: end;
+        }
+
+        .account-num {
+            font-family: 'Oswald';
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .cn-bank {
+            color: #fcc62a;
+        }
+
+        .js-bank {
+            color: #609fdf;
+        }
+
+        .gs-bank {
+            color: #578992;
+        }
+
+        .ny-bank {
+            color: #538bb6;
+        }
+
+        .zs-bank {
+            color: #89dcf6;
+        }
+
+        .right-content-title {
+            position: relative;
+            height: 60px;
+            font-family: 'PangMenZhengDao';
+            color: #f1f1f1;
+            font-size: 26px;
+            text-indent: 285px;
+            line-height: 42px;
+        }
+
+        .right-content-title img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate3d(0, 1, 0, 180deg);
+
+        }
+
+        .right-content-top {
+            height: 280px;
+        }
+
+        .right-con-graph {
+            position: relative;
+            width: 510px;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        #ripples {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .globeicon {
+            position: absolute;
+        }
+
+        .right-con-graph-L {
+            float: left;
+            width: 300px;
+            height: 220px;
+            transform: translateY(70px);
+        }
+
+        .lan-icon1 {
+            top: 97px;
+        }
+
+        .lan-icon2 {
+            top: 10px;
+            left: 120px;
+        }
+
+        .huang-icon1 {
+            top: 60px;
+            left: 120px;
+        }
+
+        .huang-icon2 {
+            left: 256px;
+            transform: scale(1.5);
+        }
+
+        .right-content-center {
+            height: 210px;
+            width: 510px;
+            position: relative;
+            /* background-color: lawngreen; */
+        }
+
+        .right-content-bottom {
+            height: 200px;
+            /* background-color: olive; */
+        }
+
+        .right-con-graph-R {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            float: left;
+            width: 210px;
+            height: 280px;
+        }
+
+        /* =============排行榜部分========== */
+        .rankList-info {
+            display: inline-flex;
+            justify-content: space-between;
+            width: 510px;
+            height: 210px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .rankList-info-L {
+            text-align: center;
+            width: 72px;
+            padding-top: 32px;
+            height: 210px;
+            /* background-color: #513137; */
+        }
+
+        .rankList-info-L svg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .rankList-info-L svg:nth-child(1) {
+            color: #75f6fd;
+        }
+
+        .rankList-info-L svg:nth-child(2) {
+            color: #c7b839;
+        }
+
+        .rankList-info-L svg:nth-child(3) {
+            color: #75f0cd;
+        }
+
+        .rankList-info-R {
+            width: 150px;
+            height: 210px;
+            text-align: end;
+            color: #f1f1f1;
+            font-size: 16px;
+            transform: translateX(-72px);
+        }
+
+        .rankList-info-R div {
+            height: 62px;
+            line-height: 62px;
+            width: 100%;
+        }
+
+        .rankList-num {
+            font-size: 20px;
+            padding-right: 10px;
+            font-family: 'Oswald';
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- svg图标库 -->
+    <symbol style="display: none;">
+        <svg id="finance-rounded" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M5 21q-.825 0-1.412-.587T3 19V4q0-.425.288-.712T4 3t.713.288T5 4v15h15q.425 0 .713.288T21 20t-.288.713T20 21zm2-3q-.425 0-.712-.288T6 17v-7q0-.425.288-.712T7 9h2q.425 0 .713.288T10 10v7q0 .425-.288.713T9 18zm5 0q-.425 0-.712-.288T11 17V5q0-.425.288-.712T12 4h2q.425 0 .713.288T15 5v12q0 .425-.288.713T14 18zm5 0q-.425 0-.712-.288T16 17v-3q0-.425.288-.712T17 13h2q.425 0 .713.288T20 14v3q0 .425-.288.713T19 18z" />
+        </svg>
+        <svg id="enterprise" viewBox="0 0 32 32">
+            <path fill="currentColor" d="M8 8h2v4H8zm0 6h2v4H8zm6-6h2v4h-2zm0 6h2v4h-2zm-6 6h2v4H8zm6 0h2v4h-2z" />
+            <path fill="currentColor"
+                d="M30 14a2 2 0 0 0-2-2h-6V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v26h28ZM4 4h16v24H4Zm18 24V14h6v14Z" />
+        </svg>
+        <svg id="host-rounded" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M4.616 20q-.691 0-1.153-.462T3 18.384V5.616q0-.691.463-1.153T4.615 4h4.577q.69 0 1.153.463t.463 1.153v12.769q0 .69-.463 1.153T9.192 20zm10.192 0q-.69 0-1.153-.462t-.463-1.153V5.615q0-.69.463-1.152T14.808 4h4.577q.69 0 1.152.463T21 5.616v12.769q0 .69-.463 1.153T19.385 20zm-6.423-6.116q0-.213-.144-.356q-.144-.144-.356-.144h-2q-.213 0-.357.145t-.143.356t.143.356t.357.144h2q.212 0 .356-.144t.144-.357m10.23 0q0-.213-.143-.356q-.144-.144-.356-.144h-2.02q-.204 0-.342.145q-.138.144-.138.356t.143.356t.357.144h2q.212 0 .356-.144t.144-.357M8.385 11.076q0-.212-.144-.356t-.356-.143h-2q-.213 0-.357.144q-.143.144-.143.357t.143.356t.357.143h2q.212 0 .356-.144t.144-.357m10.23 0q0-.212-.143-.356t-.356-.143h-2.02q-.204 0-.342.144t-.138.357t.143.356t.357.143h2q.212 0 .356-.144t.144-.357M8.385 8.25q0-.212-.144-.356t-.356-.143h-2q-.213 0-.357.144t-.143.357t.143.356t.357.143h2q.212 0 .356-.144t.144-.357m10.23 0q0-.213-.143-.356t-.357-.143h-2.019q-.204 0-.342.144t-.138.357t.143.356t.357.143h2q.212 0 .356-.144t.143-.357" />
+        </svg>
+    </symbol>
+
+
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <span>国资总览</span>
+                <span>投资管理</span>
+                <span>经济运行</span>
+            </div>
+            <div class="header-center">数字企业大数据监管平台</div>
+            <div class="header-right">
+                <span>三重一大</span>
+                <span>党建管理</span>
+                <span>风险分析</span>
+            </div>
+        </header>
+
+        <!-- 主体部分 -->
+        <div class="mainBody">
+            <div class="main">
+                <!-- 分为3个部分 -->
+                <!-- 主体左侧区域 -->
+                <div class="main-item left">
+                    <!-- 资产负债率 -->
+                    <div class="debtRatio">
+                        <div class="title-L">
+                            资产负债率
+                        </div>
+
+                        <div class="left-content dR-content">
+
+                            <div class="dR-ins-panel">
+                                <div class="dR-ins-panel-con">
+                                    87%
+                                </div>
+                            </div>
+                            <div class="dR-ins-gold">
+                                <div class="dR-ins-gold-con">
+                                    <img class="yellow-icon" src="assets/images/黄icon.png" alt="">
+                                </div>
+                            </div>
+                            <div class="dR-ins-trend">
+                                <div class="dR-ins-trend-con">
+                                    <img class="yellow-icon" src="assets/images/蓝icon.png" alt="">
+                                    <div class="dR-ins-info">
+                                        <p class="dR-ins-info-total"><b>1,483</b>亿</p>
+                                        <span class="subTitle">负债金额</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 总资产周转率 -->
+                    <div class="turnoverRate">
+                        <div class="title-L">
+                            总资产周转率
+                        </div>
+                        <div class="left-content">
+                            <!-- eCharts图表 -->
+                            <div id="turnoverRate-graph">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 银行账户分布 -->
+                    <div class="accountDist">
+                        <div class="title-L">
+                            银行账户分布
+                        </div>
+                        <div class="left-content">
+                            <div id="3d-Pie" style="width:180px;height:180px">
+
+                            </div>
+                            <div class="left-content-R">
+                                <p>中国银行&nbsp;40% <span class="account-num cn-bank">1665</span></p>
+                                <p>建设银行&nbsp;35% <span class="account-num js-bank">230</span></p>
+                                <p>工商银行&nbsp;15% <span class="account-num gs-bank">90</span></p>
+                                <p>农业银行&nbsp;5% <span class="account-num ny-bank">32</span></p>
+                                <p>招商银行&nbsp;40% <span class="account-num zs-bank">32</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 主体中间区域 -->
+                <div class="main-item center">
+                    <div class="panel topL">1666</div>
+                    <div class="panel bottomL">1666</div>
+                    <div class="panel cen">1666</div>
+                    <div class="panel righrL">1666</div>
+                    <div class="panel bottomR">1666</div>
+                    <div class="arc left-Arc"></div>
+                    <div class="arc right-Arc"></div>
+                </div>
+                <!-- 主体右侧区域 -->
+                <div class="main-item right">
+                    <div class="right-content-top">
+                        <div class="right-content-title">
+                            <img src="assets/images/title.png" alt="">
+                            <span>重点关注</span>
+                        </div>
+                        <div class="right-con-graph">
+                            <div class="right-con-graph-L">
+                                <div id="ripples" style="height:200px; width:300px;"></div>
+                                <img class="globeicon lan-icon1" src="assets/images/蓝球.png" alt="">
+                                <img class="globeicon lan-icon2" src="assets/images/蓝球.png" alt="">
+                                <img class="globeicon huang-icon1" src="assets/images/黄球.png" alt="">
+                                <img class="globeicon huang-icon2" src="assets/images/黄球.png" alt="">
+                            </div>
+                            <div class="right-con-graph-R">
+                                <div>
+                                    <img src="assets/images/两金预警.png" alt="">
+                                    <img src="assets/images/对外担保禁止清单.png" alt="">
+                                    <img src="assets/images/资本保值率.png" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="right-content-center">
+                        <!-- 排行榜图表 -->
+                        <div id="rankList" style="width: 510px; height: 210px;"></div>
+                        <div class="rankList-info">
+                            <div class="rankList-info-L">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <use href="#finance-rounded" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <use href="#enterprise" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <use href="#host-rounded" />
+                                </svg>
+                            </div>
+                            <div class="rankList-info-R">
+                                <div><span class="rankList-num " style="color: #75f6fd;">53,126</span>万元</div>
+                                <div><span class="rankList-num " style="color: #c7b839">108,978</span>万元</div>
+                                <div><span class="rankList-num " style="color: #75f0cd">4,832,849</span>万元</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-content-bottom">
+                        <div class="right-content-title">
+                            <img src="assets/images/title.png" alt="">
+                            <span>收入分析</span>
+                        </div>
+                        <!-- 双折线图标 -->
+                        <div id="doubleDiscount" style="width: 510px; height: 250px;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 背景 -->
+            <div class="bg">
+                <div class="bg-top">
+                    <img src="assets/frames/113.png" alt="">
+                </div>
+                <div class="bg-bottom">
+                    <video autoplay muted loop src="assets/video/BG_26.mp4"></video>
+                </div>
+            </div>
+        </div>
+
+
+
+        <footer style="color: white;">
+            <div class="footerInfo">
+                <div class="time">202501</div>
+                <div class="location">集团总部</div>
+            </div>
+        </footer>
+
+
+        <!--   <h1 style="font-family:PangMenZhengDao;">旁门左道</h1>
+        <h1 style="font-family:YouShe">优设字体</h1>
+        <h1 style="font-family:Oswald">Oswald-Regular;</h1> -->
+    </div>
+
+</body>
+
+</html>
+<script src="src/js/index.js"></script>
+<script src="src/js/3dPie.js"></script>
+<script src="src/js/water-ripples.js"></script>
+<script src="src/js/rankList.js"></script>
+<script src="src/js/double-discount.js"></script>
