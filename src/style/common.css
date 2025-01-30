@@ -33,7 +33,7 @@ header {
 
 .header-left span:nth-child(3) {
     margin-top: 25px;
-    color: #f1f1f1;
+    /* color: #f1f1f1; */
 }
 
 .header-center {

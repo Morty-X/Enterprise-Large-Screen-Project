@@ -1,0 +1,16 @@
+  /* 加载一个本地字体 */
+  /* 字体格式文件 */
+  @font-face {
+      font-family: 'PangMenZhengDao';
+      src: url('/assets/fonts/PangMenZhengDao.ttf') format("trueType");
+  }
+
+  @font-face {
+      font-family: 'YouShe';
+      src: url('/assets/fonts/YouShe.ttf') format("trueType");
+  }
+
+  @font-face {
+      font-family: 'Oswald';
+      src: url('/assets/fonts/Oswald.ttf') format("trueType");
+  }

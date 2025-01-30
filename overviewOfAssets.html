@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国资总览</title>
+    <link rel="stylesheet" href="src/style/common.css">
+    <link rel="stylesheet" href="src/style/overviewOfAssets.css">
+
+    <script src="src/js/echarts.min.js"></script>
+    <script src="src/js/echarts-gl.min.js"></script>
+    <script src="src/js/echarts-liquidfill.min.js"></script>
+    <script src="src/js/d3.v7.min.js"></script>
+    <script src="https://code.juejin.cn/api/raw/7376489234334482483?id=7376489234334531635"></script>
+
+    <!-- <script src="src/js/water-ripples.js"></script>
+    <script src="src/js/rankList.js"></script> -->
+
+    <script src="src/lib/tailwindcss3.4.16.js"></script>
+    <script src="src/lib/tailwindConfig.js"></script>
+</head>
+
+<body>
+    <symbol style="display: none;">
+        <!-- 企业图片 -->
+        <svg id="enterprise1" viewBox="0 0 32 32">
+            <path fill="currentColor" d="M8 8h2v4H8zm0 6h2v4H8zm6-6h2v4h-2zm0 6h2v4h-2zm-6 6h2v4H8zm6 0h2v4h-2z" />
+            <path fill="currentColor"
+                d="M30 14a2 2 0 0 0-2-2h-6V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v26h28ZM4 4h16v24H4Zm18 24V14h6v14Z" />
+        </svg>
+        <svg id="enterprise2" viewBox="0 0 512 512">
+            <path fill="currentColor"
+                d="M320 176V16H32v480h128v-96h32v96h288V176ZM112 432H80v-32h32Zm0-80H80v-32h32Zm0-80H80v-32h32Zm0-80H80v-32h32Zm0-80H80V80h32Zm128-32h32v32h-32Zm-48 272h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32V80h32Zm80 320h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32v-32h32zm176 272H320v-32h32v-32h-32v-48h32v-32h-32v-48h32v-32h-32v-32h128Z" />
+            <path fill="currentColor" d="M384 400h32v32h-32zm0-80h32v32h-32zm0-80h32v32h-32z" />
+        </svg>
+        <svg id="enterprise3" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M1 11v10h5v-6h4v6h5V11L8 6z" />
+            <path fill="currentColor" d="M10 3v1.97l7 5V11h2v2h-2v2h2v2h-2v4h6V3zm9 6h-2V7h2z" />
+        </svg>
+        <!--  -->
+        <svg id="finance-rounded" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M5 21q-.825 0-1.412-.587T3 19V4q0-.425.288-.712T4 3t.713.288T5 4v15h15q.425 0 .713.288T21 20t-.288.713T20 21zm2-3q-.425 0-.712-.288T6 17v-7q0-.425.288-.712T7 9h2q.425 0 .713.288T10 10v7q0 .425-.288.713T9 18zm5 0q-.425 0-.712-.288T11 17V5q0-.425.288-.712T12 4h2q.425 0 .713.288T15 5v12q0 .425-.288.713T14 18zm5 0q-.425 0-.712-.288T16 17v-3q0-.425.288-.712T17 13h2q.425 0 .713.288T20 14v3q0 .425-.288.713T19 18z" />
+        </svg>
+        <svg id="enterprise" viewBox="0 0 32 32">
+            <path fill="currentColor" d="M8 8h2v4H8zm0 6h2v4H8zm6-6h2v4h-2zm0 6h2v4h-2zm-6 6h2v4H8zm6 0h2v4h-2z" />
+            <path fill="currentColor"
+                d="M30 14a2 2 0 0 0-2-2h-6V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v26h28ZM4 4h16v24H4Zm18 24V14h6v14Z" />
+        </svg>
+        <svg id="host-rounded" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M4.616 20q-.691 0-1.153-.462T3 18.384V5.616q0-.691.463-1.153T4.615 4h4.577q.69 0 1.153.463t.463 1.153v12.769q0 .69-.463 1.153T9.192 20zm10.192 0q-.69 0-1.153-.462t-.463-1.153V5.615q0-.69.463-1.152T14.808 4h4.577q.69 0 1.152.463T21 5.616v12.769q0 .69-.463 1.153T19.385 20zm-6.423-6.116q0-.213-.144-.356q-.144-.144-.356-.144h-2q-.213 0-.357.145t-.143.356t.143.356t.357.144h2q.212 0 .356-.144t.144-.357m10.23 0q0-.213-.143-.356q-.144-.144-.356-.144h-2.02q-.204 0-.342.145q-.138.144-.138.356t.143.356t.357.144h2q.212 0 .356-.144t.144-.357M8.385 11.076q0-.212-.144-.356t-.356-.143h-2q-.213 0-.357.144q-.143.144-.143.357t.143.356t.357.143h2q.212 0 .356-.144t.144-.357m10.23 0q0-.212-.143-.356t-.356-.143h-2.02q-.204 0-.342.144t-.138.357t.143.356t.357.143h2q.212 0 .356-.144t.144-.357M8.385 8.25q0-.212-.144-.356t-.356-.143h-2q-.213 0-.357.144t-.143.357t.143.356t.357.143h2q.212 0 .356-.144t.144-.357m10.23 0q0-.213-.143-.356t-.357-.143h-2.019q-.204 0-.342.144t-.138.357t.143.356t.357.143h2q.212 0 .356-.144t.143-.357" />
+        </svg>
+    </symbol>
+
+    <!-- ================================ -->
+    <div class="w-[2000px] m-auto overflow-hidden bg-[#000] relative">
+        <!-- 头部 -->
+        <header>
+            <div class="header-left">
+                <span class="text-[#f1f1f1]">国资总览</span>
+                <span>投资管理</span>
+                <span>经济运行</span>
+            </div>
+            <div class="header-center">数字企业大数据监管平台</div>
+            <div class="header-right">
+                <span>三重一大</span>
+                <span>党建管理</span>
+                <span>风险分析</span>
+            </div>
+        </header> 
+
+        <!-- 主体内容 -->
+        <div class="relative h-[750px] overflow-hidden">
+            <!-- 显示内容 -->
+            <div
+                class="main absolute top-0 left-0 bottom-0  right-0  w-[2000px] h-[750px] flex justify-between  z-[99]">
+
+                <!-- 左侧区域 -->
+                <div class="w-[510px] h-[750px] ">
+                    <div class="w-[510px] h-[250px]">
+                        <div
+                            class="w-[510px] h-[60px] bg-title bg-no-repeat bg-cover font-PangMenZhengDao text-[#f1f1f1] indent-[120px] leading-[60px]">
+                            企业总数</div>
+                        <div class="w-[510px] h-[190px] px-[40px] inline-flex justify-between">
+                            <div class=" w-[120px] h-[190px]  flex flex-col justify-center items-center">
+                                <svg class="w-[40px] h-[40px] text-[#61d3e8]" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24">
+                                    <use href="#enterprise1" />
+                                </svg>
+                                <div class="text-[#f1f1f1] text-[16px] font-PangMenZhengDao">一级企业</div>
+                                <p class="text-[16px] text-[#f1f1f1]"><span
+                                        class="text-[28px] font-Oswald mr-[4px]">2,079</span>亿
+                                </p>
+                            </div>
+                            <div class=" w-[120px] h-[190px]  flex flex-col justify-center items-center">
+                                <svg class="w-[40px] h-[40px] text-[#ead877]" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24">
+                                    <use href="#enterprise2" />
+                                </svg>
+                                <div class="text-[#f1f1f1] text-[16px] font-PangMenZhengDao">二级企业</div>
+                                <p class="text-[16px] text-[#f1f1f1]"><span
+                                        class="text-[28px] font-Oswald mr-[4px]">3,579</span>亿
+                                </p>
+                            </div>
+                            <div class=" w-[120px] h-[190px]  flex flex-col justify-center items-center">
+                                <svg class="w-[40px] h-[40px] text-[#67e0fc]" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24">
+                                    <use href="#enterprise3" />
+                                </svg>
+                                <div class="text-[#f1f1f1] text-[16px] font-PangMenZhengDao">三级企业</div>
+                                <p class="text-[16px] text-[#f1f1f1]"><span
+                                        class="text-[28px] font-Oswald mr-[4px]">1483</span>亿</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-[510px] h-[250px]">
+                        <div
+                            class="w-[510px] h-[60px] bg-title bg-no-repeat bg-cover font-PangMenZhengDao text-[#f1f1f1] indent-[120px] leading-[60px]">
+                            收入分析</div>
+                        <!--收入分析 eCharts表格  -->
+
+                        <div id="turnoverRate-graph" class="w-[510px] h-[200px]">
+                        </div>
+                    </div>
+                    <div class="w-[510px] h-[250px]">
+                        <div
+                            class="w-[510px] h-[60px] bg-title bg-no-repeat bg-cover font-PangMenZhengDao text-[#f1f1f1] indent-[120px] leading-[60px]">
+                            资金分布</div>
+                        <div class="inline-flex text-[#f1f1f1] h-[200px] w-[510px]">
+
+                            <div id="3d-Pie" class="w-[180px] h-[180px]"></div>
+
+                            <div class="px-[18px] py-[26px] w-[330px] h-[200px] text-[16px]">
+                                <p class="float-left w-[50%] h-[50px] leading-[50px] text-[16px] ">
+                                    中国银行&nbsp;<b>40</b><sub>%</sub><span
+                                        class=" font-Oswald text-[22px] text-[#fcc62a]">1665</span>
+                                </p>
+                                <p class="float-left w-[50%] h-[50px] leading-[50px] text-[16px] ">
+                                    建设银行&nbsp;<b>5</b><sub>%</sub> <span
+                                        class=" font-Oswald text-[22px] text-[#609fdf] ">230</span>
+                                </p>
+                                <p class="float-left w-[50%] h-[50px] leading-[50px] text-[16px] ">
+                                    工商银行&nbsp;<b>15</b><sub>%</sub> <span
+                                        class=" font-Oswald text-[22px] text-[ #578992]">90</span>
+                                </p>
+                                <p class="float-left w-[50%] h-[50px] leading-[50px] text-[16px] ">
+                                    农业银行&nbsp;<b>5</b><sub>%</sub> <span
+                                        class=" font-Oswald text-[22px] text-[#538bb6]">32</span>
+                                </p>
+                                <p class="float-left w-[50%] h-[50px] leading-[50px] text-[16px] ">
+                                    招商银行&nbsp;<b>40</b><sub>%</sub> <span
+                                        class=" font-Oswald text-[22px] text-[#89dcf6]">32</span>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- 中间区域 -->
+                <div class="w-[980px] h-[750px]  relative ">
+                    <div class="w-[600px] h-[600px] absolute left-[50%] top-[50px] translate-x-[-300px]">
+                        <!-- 3d地图 -->
+                        <div id="3d-globe" class="w-[600px] h-[600px]">
+                        </div>
+                    </div>
+
+                    <!-- 底部圆弧 -->
+                    <div class="w-[980px] h-[400px] absolute top-[430px] left-[300px]">
+                        <img src="assets/images/kv-s1.png" alt="">
+                    </div>
+
+                    <!-- 圆环 -->
+                    <div style="perspective: 500px;" class="w-[980px] h-[200px] absolute">
+                        <img style="transform: translate3d(0, 60px, -30px) rotate3d(1, 0, 0, 121deg);"
+                            src="assets/images/b1.png" alt="">
+                    </div>
+                    <!-- 圆环 -->
+                    <div style="perspective: 500px;" class="w-[980px] h-[200px] absolute">
+                        <img class="w-[630px]"
+                            style="transform: translate3d(170px, 180px, 40px) rotate3d(1, 0, 0, 121deg);"
+                            src="assets/images/kv-i1.png" alt="">
+                    </div>
+                    <!-- 圆环 -->
+                    <div style="perspective: 500px;" class="w-[980px] h-[200px] absolute">
+                        <img class="w-[1000px]"
+                            style=" transform: translate3d(0px, 40px, 0px) rotate3d(1, 0, 0, 121deg);"
+                            src="assets/images/kv-s2.png" alt="">
+                    </div>
+                    
+                    <!-- 两侧图片 -->
+                     <div></div>
+                </div>
+
+
+
+
+
+
+                <!-- 右侧区域 -->
+                <div class=" w-[510px] h-[750px] ">
+                    <!-- 投资规模趋势 -->
+                    <div class=" w-[510px] h-[300px]">
+                        <div
+                            class="relative indent-[240px] leading-[48px] w-[510px] h-[60px] font-PangMenZhengDao text-[#f1f1f1] ">
+                            <!--  transform: rotate3d(0, 1, 0, 180deg); -->
+                            <img style="transform: rotate3d(0, 1, 0, 180deg);"
+                                class="absolute top-0 left-0 bottom-0 right-0" src="assets/images/title.png" alt="">
+                            <span>投资规模趋势</span>
+                        </div>
+                        <!-- 双折线图标 -->
+                        <div id="doubleDiscount" style="width: 510px; height: 240px;">
+                        </div>
+                    </div>
+                    <!-- 投资项目进展 -->
+                    <div class="w-[510px] h-[200px] text-[#f1f1f1]">
+                        <div
+                            class="relative indent-[240px] leading-[48px] w-[510px] h-[60px] font-PangMenZhengDao text-[#f1f1f1] ">
+                            <!--  transform: rotate3d(0, 1, 0, 180deg); -->
+                            <img style="transform: rotate3d(0, 1, 0, 180deg);"
+                                class="absolute top-0 left-0 bottom-0 right-0" src="assets/images/title.png" alt="">
+                            <span>投资项目进展</span>
+                        </div>
+
+                        <div id="project-progress" class="w-[510px] h-[140px]">
+
+
+                        </div>
+                    </div>
+
+                    <div class="w-[510px] h-[250px] ">
+                        <div
+                            class="relative indent-[240px] leading-[48px] w-[510px] h-[60px] font-PangMenZhengDao text-[#f1f1f1] ">
+                            <img style="transform: rotate3d(0, 1, 0, 180deg);"
+                                class="absolute top-0 left-0 bottom-0 right-0" src="assets/images/title.png" alt="">
+                            <span>行业资产TOP3</span>
+                        </div>
+
+                        <div class="w-[510px] h-[190px]  relative text-[#f1f1f1]">
+                            <!-- 左边图标 -->
+                            <div class="absolute z-10">
+                                <svg class="mt-[10px] ml-[10px]  w-[50px] h-[50px] text-[#75f6fd]"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <use href="#finance-rounded" />
+                                </svg>
+                                <svg class="mt-[10px] ml-[10px]  w-[50px] h-[50px] text-[#c7b839]"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <use href="#enterprise" />
+                                </svg>
+                                <svg class="mt-[10px] ml-[10px]   w-[50px] h-[50px] text-[#75f0cd]"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <use href="#host-rounded" />
+                                </svg>
+                            </div>
+
+                            <!-- 中间eCharts图表 -->
+                            <!-- 排行榜图表 -->
+                            <div id="rankList" style=" width: 510px; height: 190px;"
+                                class="absolute top-0 left-0 bottom-0 right-0">
+                            </div>
+                            <!-- 右边数据 -->
+
+                            <div class="absolute right-[60px] h-[190px] ">
+                                <div class="h-[55px] leading-[55px] text-end"><span class="rankList-num "
+                                        style="color: #75f6fd;">53,126</span>万元</div>
+                                <div class="h-[55px] leading-[55px] text-end"><span class="rankList-num "
+                                        style="color: #c7b839">108,978</span>万元</div>
+                                <div class="h-[55px] leading-[55px] text-end"><span class="rankList-num "
+                                        style="color: #75f0cd">4,832,849</span>万元</div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 背景 -->
+            <div class="w-[2000px] h-[750px] relative">
+                <div class="absolute top-0 left-0 bottom-0  right-0" style="perspective: 500px;">
+                    <video style=" transform: rotate3d(1, 0, 0, 70deg);" autoplay muted loop
+                        src="assets/video/BG_26.mp4"></video>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <!-- 底部 -->
+    <footer style="color: white;">
+        <div class="footerInfo">
+            <div class="time">202501</div>
+            <div class="location">集团总部</div>
+        </div>
+    </footer>
+    </div>
+
+
+    <!-- <h1 class="font-[PangMenZhengDao]">国资总览</h1>
+    <h2 class="font-PangMenZhengDao">国资总览123abc</h2>
+    <h2 class="font-YouShe">YouShe123abc</h2>
+    <h2 class="font-Oswald">Oswald123abc</h2> -->
+</body>
+<script src="src/js/double-discount.js"></script>
+<script src="src/js/turnoverRateEChart.js"></script>
+<script src="src/js/3dPie.js"></script>
+<script src="src/js/3d-global.js"></script>
+<script src="src/js/rankList.js"></script>
+<script src="src/js/hill.js"></script>
+
+</html>
