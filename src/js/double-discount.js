@@ -2,7 +2,7 @@
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('doubleDiscount'));
     option = {
-        backgroundColor: 'rgba(0,0,0,0,5)',
+        // backgroundColor: 'rgba(0,0,0,0,5)',
         xAxis: {
             type: 'category',
             // 坐标轴刻度标签的相关设置。

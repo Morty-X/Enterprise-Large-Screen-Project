@@ -109,7 +109,7 @@
                             },
                             {
                                 offset: 1,
-                                color: 'rgba(68, 111, 129,0.5)' //  100%  处的颜色
+                                color: 'rgba(68, 111, 129)' //  100%  处的颜色
                             }
                             ],
                             global: false //  缺省为  false
@@ -136,7 +136,7 @@
                             },
                             {
                                 offset: 1,
-                                color: 'rgba(39, 71, 126,0.5)' //  100%  处的颜色
+                                color: 'rgba(39, 71, 126)' //  100%  处的颜色
                             }
                             ],
                             global: false //  缺省为  false
@@ -163,7 +163,7 @@
                             },
                             {
                                 offset: 1,
-                                color: 'rgba(81, 128, 117,0.5)' //  100%  处的颜色
+                                color: 'rgba(81, 128, 117)' //  100%  处的颜色
                             }
                             ],
                             global: false //  缺省为  false
@@ -190,7 +190,7 @@
                             },
                             {
                                 offset: 1,
-                                color: 'rgba(109, 105, 42,0.5)' //  100%  处的颜色
+                                color: 'rgba(109, 105, 42)' //  100%  处的颜色
                             }
                             ],
                             global: false //  缺省为  false
@@ -217,7 +217,7 @@
                             },
                             {
                                 offset: 1,
-                                color: 'rgba(31, 54, 75,0.5)' //  100%  处的颜色
+                                color: 'rgba(31, 54, 75)' //  100%  处的颜色
                             }
                             ],
                             global: false //  缺省为  false
@@ -244,7 +244,7 @@
                             },
                             {
                                 offset: 1,
-                                color: 'rgba(91, 66, 25,0.5)' //  100%  处的颜色
+                                color: 'rgba(91, 66, 25)' //  100%  处的颜色
                             }
                             ],
                             global: false //  缺省为  false
@@ -271,7 +271,7 @@
                             },
                             {
                                 offset: 1,
-                                color: 'rgba(37, 50, 102,0.5)' //  100%  处的颜色
+                                color: 'rgba(37, 50, 102)' //  100%  处的颜色
                             }
                             ],
                             global: false //  缺省为  false
