@@ -11,7 +11,8 @@ tailwind.config = {
             },
             backgroundImage: {
                 'title': "url('assets/images/title.png')",
-                'd1': "url('assets/images/d1.png')"
+                'd1': "url('assets/images/d1.png')",
+                'kv-a1': "url('assets/images/kv-a1.png')"
             }
         }
     }

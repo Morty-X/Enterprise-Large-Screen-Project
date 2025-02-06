@@ -23,8 +23,8 @@
             },
             axisLabel: {
                 textStyle: {
-                    color: '#999',
-                    fontSize: 10
+                    color: '#f1f1f1',
+                    fontSize: 11
                 }
             }
         },
@@ -64,7 +64,15 @@
             barCategoryGap: '0%',
             symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
             label: {
-                show: false,
+                show: true,
+                position: 'top',
+                distance: 4,
+                color: '#fff',
+                // fontWeight: 'bolder',
+                fontSize: 12,
+                formatter: function (data) {
+                    return data.value + '%'
+                }
             },
             // itemStyle:
             // {

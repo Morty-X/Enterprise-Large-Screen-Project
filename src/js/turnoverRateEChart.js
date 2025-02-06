@@ -232,8 +232,6 @@
                         }],
                         global: false // 缺省为 false
                     }
-
-
                 }
 
             },

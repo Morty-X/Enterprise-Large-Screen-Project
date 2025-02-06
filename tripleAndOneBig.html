@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三重一大</title>
+
+    <link rel="stylesheet" href="src/style/common.css">
+
+    <script src="src/js/echarts.min.js"></script>
+    <script src="src/js/echarts-gl.min.js"></script>
+    <script src="src/js/echarts-liquidfill.min.js"></script>
+    <script src="src/js/d3.v7.min.js"></script>
+    <script src="src/lib/tailwindcss3.4.16.js"></script>
+    <script src="src/lib/tailwindConfig.js"></script>
+</head>
+
+<body>
+    <svg style="display: none;">
+        <!-- 企业图片 -->
+        <svg id="enterprise1" viewBox="0 0 32 32">
+            <path fill="currentColor" d="M8 8h2v4H8zm0 6h2v4H8zm6-6h2v4h-2zm0 6h2v4h-2zm-6 6h2v4H8zm6 0h2v4h-2z" />
+            <path fill="currentColor"
+                d="M30 14a2 2 0 0 0-2-2h-6V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v26h28ZM4 4h16v24H4Zm18 24V14h6v14Z" />
+        </svg>
+        <svg id="enterprise2" viewBox="0 0 512 512">
+            <path fill="currentColor"
+                d="M320 176V16H32v480h128v-96h32v96h288V176ZM112 432H80v-32h32Zm0-80H80v-32h32Zm0-80H80v-32h32Zm0-80H80v-32h32Zm0-80H80V80h32Zm128-32h32v32h-32Zm-48 272h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32V80h32Zm80 320h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32v-32h32zm176 272H320v-32h32v-32h-32v-48h32v-32h-32v-48h32v-32h-32v-32h128Z" />
+            <path fill="currentColor" d="M384 400h32v32h-32zm0-80h32v32h-32zm0-80h32v32h-32z" />
+        </svg>
+        <svg id="enterprise3" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M1 11v10h5v-6h4v6h5V11L8 6z" />
+            <path fill="currentColor" d="M10 3v1.97l7 5V11h2v2h-2v2h2v2h-2v4h6V3zm9 6h-2V7h2z" />
+        </svg>
+        <!--  -->
+        <svg id="finance-rounded" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M5 21q-.825 0-1.412-.587T3 19V4q0-.425.288-.712T4 3t.713.288T5 4v15h15q.425 0 .713.288T21 20t-.288.713T20 21zm2-3q-.425 0-.712-.288T6 17v-7q0-.425.288-.712T7 9h2q.425 0 .713.288T10 10v7q0 .425-.288.713T9 18zm5 0q-.425 0-.712-.288T11 17V5q0-.425.288-.712T12 4h2q.425 0 .713.288T15 5v12q0 .425-.288.713T14 18zm5 0q-.425 0-.712-.288T16 17v-3q0-.425.288-.712T17 13h2q.425 0 .713.288T20 14v3q0 .425-.288.713T19 18z" />
+        </svg>
+        <svg id="enterprise" viewBox="0 0 32 32">
+            <path fill="currentColor" d="M8 8h2v4H8zm0 6h2v4H8zm6-6h2v4h-2zm0 6h2v4h-2zm-6 6h2v4H8zm6 0h2v4h-2z" />
+            <path fill="currentColor"
+                d="M30 14a2 2 0 0 0-2-2h-6V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v26h28ZM4 4h16v24H4Zm18 24V14h6v14Z" />
+        </svg>
+        <svg id="host-rounded" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M4.616 20q-.691 0-1.153-.462T3 18.384V5.616q0-.691.463-1.153T4.615 4h4.577q.69 0 1.153.463t.463 1.153v12.769q0 .69-.463 1.153T9.192 20zm10.192 0q-.69 0-1.153-.462t-.463-1.153V5.615q0-.69.463-1.152T14.808 4h4.577q.69 0 1.152.463T21 5.616v12.769q0 .69-.463 1.153T19.385 20zm-6.423-6.116q0-.213-.144-.356q-.144-.144-.356-.144h-2q-.213 0-.357.145t-.143.356t.143.356t.357.144h2q.212 0 .356-.144t.144-.357m10.23 0q0-.213-.143-.356q-.144-.144-.356-.144h-2.02q-.204 0-.342.145q-.138.144-.138.356t.143.356t.357.144h2q.212 0 .356-.144t.144-.357M8.385 11.076q0-.212-.144-.356t-.356-.143h-2q-.213 0-.357.144q-.143.144-.143.357t.143.356t.357.143h2q.212 0 .356-.144t.144-.357m10.23 0q0-.212-.143-.356t-.356-.143h-2.02q-.204 0-.342.144t-.138.357t.143.356t.357.143h2q.212 0 .356-.144t.144-.357M8.385 8.25q0-.212-.144-.356t-.356-.143h-2q-.213 0-.357.144t-.143.357t.143.356t.357.143h2q.212 0 .356-.144t.144-.357m10.23 0q0-.213-.143-.356t-.357-.143h-2.019q-.204 0-.342.144t-.138.357t.143.356t.357.143h2q.212 0 .356-.144t.143-.357" />
+        </svg>
+        <!-- 账单 -->
+        <svg id="bill" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M9.5 10.5H12a1 1 0 0 0 0-2h-1V8a1 1 0 0 0-2 0v.55a2.5 2.5 0 0 0 .5 4.95h1a.5.5 0 0 1 0 1H8a1 1 0 0 0 0 2h1v.5a1 1 0 0 0 2 0v-.55a2.5 2.5 0 0 0-.5-4.95h-1a.5.5 0 0 1 0-1M21 12h-3V3a1 1 0 0 0-.5-.87a1 1 0 0 0-1 0l-3 1.72l-3-1.72a1 1 0 0 0-1 0l-3 1.72l-3-1.72a1 1 0 0 0-1 0A1 1 0 0 0 2 3v16a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1M5 20a1 1 0 0 1-1-1V4.73l2 1.14a1.08 1.08 0 0 0 1 0l3-1.72l3 1.72a1.08 1.08 0 0 0 1 0l2-1.14V19a3 3 0 0 0 .18 1Zm15-1a1 1 0 0 1-2 0v-5h2Z" />
+        </svg>
+        <!-- 数据库 -->
+        <svg id="data" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M20 6c0-2.168-3.663-4-8-4S4 3.832 4 6v2c0 2.168 3.663 4 8 4s8-1.832 8-4zm-8 13c-4.337 0-8-1.832-8-4v3c0 2.168 3.663 4 8 4s8-1.832 8-4v-3c0 2.168-3.663 4-8 4" />
+            <path fill="currentColor" d="M20 10c0 2.168-3.663 4-8 4s-8-1.832-8-4v3c0 2.168 3.663 4 8 4s8-1.832 8-4z" />
+        </svg>
+
+        <svg id="book-atlas" viewBox="0 0 448 512">
+            <path fill="currentColor"
+                d="M0 96C0 43 43 0 96 0h320c17.7 0 32 14.3 32 32v320c0 17.7-14.3 32-32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-53 0-96-43-96-96zm64 320c0 17.7 14.3 32 32 32h256v-64H96c-17.7 0-32 14.3-32 32m183.4-132.2c-3.7 3.7-6.2 4.2-7.4 4.2s-3.7-.5-7.4-4.2c-3.8-3.7-8-10-11.8-18.9c-6.2-14.5-10.8-34.3-12.2-56.9h63c-1.5 22.6-6 42.4-12.2 56.9c-3.8 8.9-8 15.2-11.8 18.9zm42.7-9.9c7.3-18.3 12-41.1 13.4-65.9h31.1c-4.7 27.9-21.4 51.7-44.5 65.9m0-163.8c23.2 14.2 39.9 38 44.5 65.9h-31.1c-1.4-24.7-6.1-47.5-13.4-65.9M368 192a128 128 0 1 0-256 0a128 128 0 1 0 256 0m-222.7 16h31.1c1.4 24.7 6.1 47.5 13.4 65.9c-23.2-14.2-39.9-38-44.5-65.9m31.1-32h-31.1c4.7-27.9 21.4-51.7 44.5-65.9c-7.3 18.3-12 41.1-13.4 65.9m56.1-75.8c3.7-3.7 6.2-4.2 7.4-4.2s3.7.5 7.4 4.2c3.8 3.7 8 10 11.8 18.9c6.2 14.5 10.8 34.3 12.2 56.9h-63c1.5-22.6 6-42.4 12.2-56.9c3.8-8.9 8-15.2 11.8-18.9z" />
+        </svg>
+        <svg id="contact-emergency" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M17.558 11.692h.884v-1.93l1.667.965l.443-.761L18.884 9l1.668-.965l-.443-.762l-1.667.966V6.308h-.884v1.93l-1.668-.965l-.442.762L17.115 9l-1.667.966l.442.761l1.668-.965zM2.616 19.616q-.691 0-1.153-.463T1 18V6q0-.69.463-1.153t1.152-.463h18.77q.69 0 1.153.463T23 6v12q0 .69-.462 1.153t-1.153.463zM9 14.23q1.039 0 1.77-.731t.73-1.77t-.73-1.768T9 9.23t-1.77.73t-.73 1.77t.73 1.769t1.77.73m-5.784 4.386h11.569q-1.05-1.356-2.554-2.178T9 15.616t-3.23.822t-2.554 2.178" />
+        </svg>
+        <svg id="star-fill" viewBox="0 0 256 256">
+            <path fill="currentColor"
+                d="M208 32H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16M64 72h128a8 8 0 0 1 0 16H64a8 8 0 0 1 0-16m0 48h32a8 8 0 0 1 0 16H64a8 8 0 0 1 0-16m40 64H64a8 8 0 0 1 0-16h40a8 8 0 0 1 0 16m94.55-40.71L180.69 158l5.44 22a4 4 0 0 1-1.49 4.17a4.05 4.05 0 0 1-2.39.79a4 4 0 0 1-2-.55L160 172.54l-20.22 11.91a4 4 0 0 1-5.91-4.41l5.44-22l-17.86-14.75a4 4 0 0 1 2.24-7.07l23.58-1.82l9.06-21a4 4 0 0 1 7.34 0l9.06 21l23.58 1.82a4 4 0 0 1 2.24 7.07" />
+        </svg>
+        <svg id="map-collection" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="m9 1.842l6.074 3.544L22 2.5v8h-2v-5l-4 1.667V9.5h-2V7.074l-4-2.333v12.185l1.868 1.09l-1.008 1.727l-1.934-1.129L2 21.5V5.926zM8 16.833V4.741L4 7.074V18.5zm10-6.102l2.21 3.226l3.752 1.106l-2.385 3.1l.108 3.909L18 20.762l-3.685 1.31l.108-3.91l-2.385-3.1l3.751-1.105zm0 3.538l-.963 1.405l-1.634.482l1.039 1.35l-.047 1.703L18 18.64l1.605.57l-.047-1.703l1.04-1.35l-1.635-.482z" />
+        </svg>
+        <!-- 电话簿 -->
+        <svg id="smile-outline" viewBox="0 0 24 24">
+            <path fill="currentColor" fill-rule="evenodd"
+                d="M12.25 2.834c-.46-.078-1.088-.084-2.22-.084c-1.917 0-3.28.002-4.312.14c-1.012.135-1.593.39-2.016.812s-.677 1.003-.812 2.009c-.138 1.028-.14 2.382-.14 4.29v4c0 1.906.002 3.26.14 4.288c.135 1.006.389 1.586.812 2.01c.423.422 1.003.676 2.009.811c1.028.139 2.382.14 4.289.14h4c1.907 0 3.262-.002 4.29-.14c1.005-.135 1.585-.389 2.008-.812s.677-1.003.812-2.009c.138-1.027.14-2.382.14-4.289v-.437c0-1.536-.01-2.264-.174-2.813h-3.13c-1.133 0-2.058 0-2.79-.098c-.763-.103-1.425-.325-1.954-.854s-.751-1.19-.854-1.955c-.098-.73-.098-1.656-.098-2.79zm1.5.776V5c0 1.2.002 2.024.085 2.643c.08.598.224.891.428 1.094s.496.348 1.094.428c.619.083 1.443.085 2.643.085h2.02a46 46 0 0 0-1.17-1.076l-3.959-3.563A37 37 0 0 0 13.75 3.61m-3.575-2.36c1.385 0 2.28 0 3.103.315c.823.316 1.485.912 2.51 1.835l.107.096l3.958 3.563l.125.112c1.184 1.065 1.95 1.754 2.361 2.678s.412 1.954.411 3.546v.661c0 1.838 0 3.294-.153 4.433c-.158 1.172-.49 2.121-1.238 2.87c-.749.748-1.698 1.08-2.87 1.238c-1.14.153-2.595.153-4.433.153H9.944c-1.838 0-3.294 0-4.433-.153c-1.172-.158-2.121-.49-2.87-1.238c-.748-.749-1.08-1.698-1.238-2.87c-.153-1.14-.153-2.595-.153-4.433V9.945c0-1.838 0-3.294.153-4.433c.158-1.172.49-2.121 1.238-2.87c.75-.749 1.701-1.08 2.878-1.238c1.144-.153 2.607-.153 4.455-.153h.202"
+                clip-rule="evenodd" />
+            <path fill="currentColor"
+                d="M18 14.5c0 .829-.448 1.5-1 1.5s-1-.671-1-1.5c0-.828.448-1.5 1-1.5s1 .672 1 1.5" />
+            <path fill="currentColor" fill-rule="evenodd"
+                d="M8.376 17.084a.75.75 0 0 1 1.04-.208a4.66 4.66 0 0 0 5.168 0a.75.75 0 1 1 .832 1.248a6.16 6.16 0 0 1-6.832 0a.75.75 0 0 1-.208-1.04"
+                clip-rule="evenodd" />
+            <path fill="currentColor"
+                d="M8 14.5c0 .829-.448 1.5-1 1.5s-1-.671-1-1.5c0-.828.448-1.5 1-1.5s1 .672 1 1.5" />
+        </svg>
+
+        </symbol>
+
+        <!-- ================================ -->
+        <div class="w-[2000px] m-auto overflow-hidden bg-[#000] relative">
+            <!-- 头部 -->
+            <header>
+                <div class="header-left">
+                    <span>国资总览</span>
+                    <span>投资管理</span>
+                    <span>经济运行</span>
+                </div>
+                <div class="header-center">数字企业大数据监管平台</div>
+                <div class="header-right">
+                    <span class="text-[#f1f1f1]">三重一大</span>
+                    <span>党建管理</span>
+                    <span>风险分析</span>
+                </div>
+            </header>
+
+            <!-- 主体内容 -->
+            <div class="relative h-[750px] overflow-hidden">
+                <div
+                    class="absolute top-0 left-0 bottom-0  text-[#f1f1f1] right-0 inline-flex  w-[2000px] h-[750px]   z-[99]">
+                    <!-- 左侧区域 -->
+                    <div class="w-[500px] h-[750px] pl-[20px]">
+                        <div class="h-[360px]">
+                            <div class="h-[60px] relative leading-[40px] indent-[120px]">
+                                <img class=" absolute top-0 left-0 bottom-0 right-0" src="assets/images/title.png"
+                                    alt="">
+                                <span class="font-PangMenZhengDao text-[22px]">重大会议分析</span>
+                            </div>
+                            <div class="h-[300px] relative ">
+                                <div id="nestRing" class=" absolute w-[480px] h-[300px]"></div>
+                                <div class="absolute text-center w-[100px] h-[100px]  top-[100px] left-[190px]">
+                                    <p><span class="font-Oswald text-[34px]">279</span>次</p>
+                                    <p>召开会议</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-[390px]">
+                            <div class="h-[60px] relative leading-[40px] indent-[120px]">
+                                <img class=" absolute top-0 left-0 bottom-0 right-0" src="assets/images/title.png"
+                                    alt="">
+                                <span class="font-PangMenZhengDao text-[22px]">事项统计情况</span>
+                            </div>
+
+                            <div class="h-[330px] bg-indigo-600 relative">
+                                <!-- 事项统计的 eCharts图 -->
+                                <div id="eventStatistics" class="w-[100%] h-[330px] absolute"></div>
+                                <!-- 项目&次数 -->
+                                <ul
+                                    class="absolute pt-[36px] right-[14px] text-[#f1f1f1] text-[16px]   justify-around h-full">
+                                    <li class="  h-[40px] leading-[40px]">695项 &nbsp; 201次</li>
+                                    <li class="  h-[40px] leading-[40px]">198项 &nbsp; 98次</li>
+                                    <li class="  h-[40px] leading-[40px]">173项 &nbsp; 53次</li>
+                                    <li class="  h-[40px] leading-[40px]">158项 &nbsp; 72次</li>
+                                    <li class="  h-[40px] leading-[40px]">157项 &nbsp; 36次</li>
+                                    <li class="  h-[40px] leading-[40px]">128项 &nbsp; 45次</li>
+                                    <li class="  h-[40px] leading-[40px]">107项 &nbsp; 100次</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- 中间区域 -->
+                    <div class="w-[1000px] h-[750px]">
+                        <div class="mt-[16px] relative h-[500px] w-[1000px] ">
+                            <video class="absolute h-[500px] w-[1000px] z-[1] mt-[40px]" autoplay muted loop
+                                src="assets/video/kv31.mp4"></video>
+
+                            <img class=" absolute z-[2] top-[70px] left-[200px]" src="/assets/images/31-1.png" alt="">
+                            <img class=" absolute z-[2] top-[220px] left-[260px]" src="/assets/images/31-2.png" alt="">
+                            <img class=" absolute z-[2] top-[65px] left-[700px]" src="/assets/images/31-3.png" alt="">
+                            <img class=" absolute z-[2] top-[220px] left-[670px]" src="/assets/images/31-4.png" alt="">
+                        </div>
+                        <div class="w-[1000px] px-[36px] text-[#f1f1f1] h-[240px]  inline-flex">
+                            <div class="flex-1 flex items-center">
+                                <svg class="w-[36px] h-[36px]  mr-[16px] text-[#fffc4f]" viewBox="0 0 24 24">
+                                    <use href="#book-atlas" />
+                                </svg>
+                                <div>
+                                    <div><span class=" font-Oswald text-[24px]">2,079</span>项 &nbsp; 36%</div>
+                                    <p class=" font-PangMenZhengDao">事项统计</p>
+                                </div>
+                            </div>
+                            <div class="flex-1 flex items-center">
+                                <svg class="w-[36px] h-[36px]  mr-[16px] text-[#8dd8fe]" viewBox="0 0 24 24">
+                                    <use href="#contact-emergency" />
+                                </svg>
+                                <div>
+                                    <div><span class=" font-Oswald text-[24px]">1,438</span>项 &nbsp; 27%</div>
+                                    <p class=" font-PangMenZhengDao">会议统计</p>
+                                </div>
+                            </div>
+                            <div class="flex-1 flex items-center">
+                                <svg class="w-[36px] h-[36px]  mr-[16px] text-[#6fe2fd]" viewBox="0 0 24 24">
+                                    <use href="#star-fill" />
+                                </svg>
+                                <div>
+                                    <div><span class=" font-Oswald text-[24px]">2,079</span>项 &nbsp; 36%</div>
+                                    <p class=" font-PangMenZhengDao">制度统计</p>
+                                </div>
+                            </div>
+                            <div class="flex-1 flex items-center">
+                                <svg class="w-[36px] h-[36px]  mr-[16px] text-[#7bf7ba]" viewBox="0 0 24 24">
+                                    <use href="#map-collection" />
+                                </svg>
+                                <div>
+                                    <div><span class="font-Oswald text-[24px]">1,484</span>项 &nbsp; 27%</div>
+                                    <p class="font-PangMenZhengDao">事项统计</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧区域 -->
+                    <div class="w-[500px] h-[750px] pr-[20px]">
+                        <div class="h-[330px] ">
+                            <div class="h-[60px] relative leading-[40px] text-right">
+                                <img style="transform: rotate3d(0, 1, 0, 180deg);"
+                                    class=" absolute top-0 left-0 bottom-0 right-0" src="assets/images/title.png"
+                                    alt="">
+                                <span class=" mr-[120px] font-PangMenZhengDao text-[22px]">议题统计情况</span>
+                            </div>
+                            <div class="h-[270px] ">
+                                <div class="h-[135px] inline-flex">
+                                    <div class="w-[120px] h-[120px] mr-[20px]  text-center ">
+                                        <p class="h-[40px] leading-[40px]">需要督办</p>
+                                        <p class="h-[80px] leading-[80px] text-[24px] font-Oswald text-[#7aef9f]">1009
+                                        </p>
+                                    </div>
+                                    <div class="">
+                                        <p>是否通过</p>
+                                        <div class=" flex justify-around">
+                                            <div class="w-[100px] h-[90px]  text-center ">
+                                                <p>通过</p>
+                                                <p
+                                                    class=" h-[50px] leading-[50px] font-Oswald text-[24px] text-[#5bc8e9]">
+                                                    8157</p>
+                                            </div>
+                                            <div class="w-[100px] h-[90px]  text-center ">
+                                                <p>否决</p>
+                                                <p
+                                                    class=" h-[50px] leading-[50px] font-Oswald text-[24px] text-[#da3f15]">
+                                                    35</p>
+                                            </div>
+                                            <div class="w-[100px] h-[90px]  text-center ">
+                                                <p>缓议</p>
+                                                <p
+                                                    class=" h-[50px] leading-[50px] font-Oswald text-[24px] text-[#e5db30]">
+                                                    10</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="h-[135px] inline-flex">
+                                    <div class="w-[120px] h-[120px] mr-[20px]  text-center ">
+                                        <p class="h-[40px] leading-[40px]">不需要督办</p>
+                                        <p class="h-[80px] leading-[80px] text-[24px] font-Oswald text-[#5dccec]">1009
+                                        </p>
+                                    </div>
+                                    <div class="">
+                                        <p>是否报国资委</p>
+                                        <div class=" flex justify-around">
+                                            <div class="w-[100px] h-[90px]  text-center ">
+                                                <p>审批</p>
+                                                <p
+                                                    class=" h-[50px] leading-[50px] font-Oswald text-[24px] text-[#5dccec]">
+                                                    141</p>
+                                            </div>
+                                            <div class="w-[100px] h-[90px]  text-center ">
+                                                <p>备案</p>
+                                                <p
+                                                    class=" h-[50px] leading-[50px] font-Oswald text-[24px] text-[#5dccec]">
+                                                    195</p>
+                                            </div>
+                                            <div class="w-[100px] h-[90px]  text-center ">
+                                                <p>否</p>
+                                                <p
+                                                    class=" h-[50px] leading-[50px] font-Oswald text-[24px] text-[#5dccec]">
+                                                    7867</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="h-[220px] ">
+                            <div class="h-[60px] relative leading-[40px] text-right">
+                                <img style="transform: rotate3d(0, 1, 0, 180deg);"
+                                    class=" absolute top-0 left-0 bottom-0 right-0" src="assets/images/title.png"
+                                    alt="">
+                                <span class=" mr-[120px] font-PangMenZhengDao text-[22px]">法律审核情况</span>
+                            </div>
+
+                            <div class="h-[160px]  relative bg-cyan-500">
+                                <div id="valprogressbar" class="w-[480px] h-[160px] absolute"></div>
+                                <div class="absolute top-[20px] ">
+                                    <div class=" w-[40px] h-[40px]  flex justify-center items-center">
+                                        <svg class="w-[26px] h-[26px]  text-[#fffc4f]" viewBox="0 0 24 24">
+                                            <use href="#book-atlas" />
+                                        </svg>
+                                    </div>
+                                    <div class=" w-[40px] h-[40px]  flex justify-center items-center">
+                                        <svg class="w-[26px] h-[26px]  text-[#3292fe]" viewBox="0 0 24 24">
+                                            <use href="#data" />
+                                        </svg>
+                                    </div>
+                                    <div class=" w-[40px] h-[40px]  flex justify-center items-center">
+                                        <svg class="w-[26px] h-[26px]  text-[#9eecfe]" viewBox="0 0 24 24">
+                                            <use href="#contact-emergency" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="absolute right-0 top-[30px]">
+                                    <div class="h-[40px] font-Oswald">30%</div>
+                                    <div class="h-[40px] font-Oswald">40%</div>
+                                    <div class="h-[40px] font-Oswald">30%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-[200px] ">
+                            <div class="h-[60px] relative leading-[40px] text-right ">
+                                <img style="transform: rotate3d(0, 1, 0, 180deg);"
+                                    class=" absolute top-0 left-0 bottom-0 right-0" src="assets/images/title.png"
+                                    alt="">
+                                <span class=" mr-[120px] font-PangMenZhengDao text-[22px]">指标异常</span>
+                            </div>
+                            <div class="h-[140px] ">
+                                <ul class=" w-[480px] h-[140px] flex justify-around items-center">
+                                    <li class="text-center flex-1 ">
+                                        <div
+                                            class="font-Oswald text-[#cec122] text-[20px] w-[50px] h-[50px] leading-[50px] rounded-[999px] border border-red-100 ">
+                                            76</div>
+                                        <div class=" h-[40px]"></div>
+                                        <p class="text-[15px] h-[45px]">会议超期报送</p>
+                                    </li>
+                                    <li class="text-center flex-1 ">
+                                        <div
+                                            class="font-Oswald text-[#cec122] text-[20px] w-[50px] h-[50px] leading-[50px] rounded-[999px] border border-red-100 ">
+                                            70</div>
+                                        <div class=" h-[40px]"></div>
+                                        <p class="text-[15px] h-[45px]">近期未报送</p>
+                                    </li>
+                                    <li class="text-center flex-1 ">
+                                        <div
+                                            class="font-Oswald text-[#cec122] text-[20px] w-[50px] h-[50px] leading-[50px] rounded-[999px] border border-red-100 ">
+                                            68</div>
+                                        <div class=" h-[40px]"></div>
+                                        <p class="text-[15px] h-[45px]">决策长期未结束</p>
+                                    </li>
+                                    <li class="text-center flex-1 ">
+                                        <div
+                                            class="font-Oswald text-[#cec122] text-[20px] w-[50px] h-[50px] leading-[50px] rounded-[999px] border border-red-100 ">
+                                            62</div>
+                                        <div class=" h-[40px]"></div>
+                                        <p class="text-[15px] h-[45px]">阻止实施未开始</p>
+                                    </li>
+                                    <li class="text-center flex-1 ">
+                                        <div
+                                            class="font-Oswald text-[#cec122] text-[20px] w-[50px] h-[50px] leading-[50px] rounded-[999px] border border-red-100 ">
+                                            45</div>
+                                        <div class=" h-[40px]"></div>
+                                        <p class="text-[15px] h-[45px]">会议召开异常</p>
+                                    </li>
+                                    <li class="text-center flex-1 ">
+                                        <div
+                                            class="font-Oswald text-[#cec122] text-[20px] w-[50px] h-[50px] leading-[50px] rounded-[999px] border border-red-100 ">
+                                            40</div>
+                                        <div class=" h-[40px]"></div>
+                                        <p class="text-[15px] h-[45px]">事项清单版本</p>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 背景 -->
+                <div class="w-[2000px] h-[750px] relative">
+                    <div class="absolute top-0 left-0 bottom-0  right-0" style="perspective: 500px;">
+                        <video style=" transform: rotate3d(1, 0, 0, 70deg);" autoplay muted loop
+                            src="assets/video/BG_26.mp4"></video>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 底部 -->
+            <footer style="color: white;">
+                <div class="footerInfo">
+                    <div class="time">202501</div>
+                    <div class="location">集团总部</div>
+                </div>
+            </footer>
+        </div>
+</body>
+<script src="src/js/double-discount.js"></script>
+<script src="src/js/turnoverRateEChart.js"></script>
+<script src="src/js/3dPie.js"></script>
+<script src="src/js/3d-global.js"></script>
+<script src="src/js/rankList.js"></script>
+<script src="src/js/hill.js"></script>
+<script src="src/js/planFinish.js"></script>
+<script src="src/js/circular-pro.js"></script>
+<script src="/src/js/eventStatistics.js"></script>
+<script src="/src/js/valprogressbar.js"></script>
+<script src="src/js/NestedRings.js"></script>
+
+</html>
