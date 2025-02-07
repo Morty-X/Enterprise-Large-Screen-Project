@@ -19,6 +19,14 @@
 </head>
 
 <body>
+    <!-- 图标库 -->
+    <symbol class="hidden">
+        <svg id="contacts" viewBox="0 0 2048 2048">
+            <path fill="currentColor"
+                d="M1632 1462q66 33 119 81t90 107t58 128t21 142h-128q0-79-30-149t-82-122t-123-83t-149-30q-80 0-149 30t-122 82t-83 123t-30 149H896q0-73 20-142t58-128t91-107t119-81q-75-54-117-135t-43-175q0-79-30-149t-82-122t-123-83t-149-30q-80 0-149 30t-122 82t-83 123t-30 149H128q0-73 20-142t58-128t91-107t119-81q-75-54-117-135t-43-175q0-79 30-149t82-122t122-83T640 0q79 0 149 30t122 82t83 123t30 149q0 94-42 175T864 694q76 38 136 98t98 136q54-75 135-117t175-43q79 0 149 30t122 82t83 123t30 149q0 94-42 175t-118 135M640 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m768 768q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m128-1152h-384V128h512v512h-128z" />
+        </svg>
+    </symbol>
+
     <!-- ================================ -->
     <div class="w-[2000px] m-auto overflow-hidden bg-[#000] relative">
         <!-- 头部 -->
@@ -37,18 +45,47 @@
         </header>
 
         <!-- 主体内容 -->
-        <div class="h-[850px] relative overflow-hidden bg-red-300 ">
+        <div class="h-[850px] relative overflow-hidden  ">
             <!-- 主体内容区域 -->
             <div class="w-[2000px] h-[800px] top-0 left-0 absolute z-20">
                 <div class=" relative w-[2000px] h-[800px] inline-flex ">
+                    <!-- 左侧区域 -->
                     <div class="w-[490px] h-[800px] text-[#f1f1f1]">
                         <div class="w-[490px] h-[280px]">
                             <div class="relative h-[60px] leading-[50px]  ">
                                 <img class="absolute top-0 left-0 h-[60px]" src="/assets/images/title.png" alt="">
                                 <span class=" font-PangMenZhengDao ml-[120px]">党组织数量</span>
                             </div>
-                            <div class="pl-[30px] w-full h-[220px] bg-[pink]">
-                                这里应该是eCharts图
+                            <div class="pl-[30px] w-full h-[220px]  inline-flex items-center">
+                                <!-- 圆锥图 -->
+                                <img class="w-[120px] h-[160px]" src="assets/images/circularcone.png" alt="">
+                                <div class="ml-[46px] mt-[-10px]">
+                                    <div class=" text-[16px] h-[40px] leading-[40px]">
+                                        <span class="text-[24px] text-[#69e1e7] font-Oswald">429</span>
+                                        <span class="text-[#69e1e7]">个</span>
+                                        <span class="mx-[14px]">10%</span>
+                                        <span class="text-[#999]">集团总部</span>
+                                    </div>
+                                    <div class=" text-[16px] h-[40px] leading-[40px]">
+                                        <span class="text-[24px] text-[#c6c321] font-Oswald">429</span>
+                                        <span class="text-[#c6c321]">个</span>
+                                        <span class="mx-[14px]">25%</span>
+                                        <span class="text-[#999]">二级企业</span>
+                                    </div>
+                                    <div class=" text-[16px] h-[40px] leading-[40px]">
+                                        <span class="text-[24px] text-[#62c88d] font-Oswald">429</span>
+                                        <span class="text-[#62c88d]">个</span>
+                                        <span class="mx-[14px]">30%</span>
+                                        <span class="text-[#999]">三级企业</span>
+                                    </div>
+                                    <div class=" text-[16px] h-[40px] leading-[40px]">
+                                        <span class="text-[24px] text-[#2c81e4] font-Oswald">429</span>
+                                        <span class="text-[#2c81e4]">个</span>
+                                        <span class="mx-[14px]">35%</span>
+                                        <span class="text-[#999]">其它组织</span>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -56,17 +93,263 @@
                             <div class="relative h-[60px] leading-[50px]  ">
                                 <img class="absolute top-0 left-0 h-[60px]" src="/assets/images/title.png" alt="">
                                 <span class=" font-PangMenZhengDao ml-[120px]">党建活动</span>
-                            </div> 
-                            <div class="pl-[30px] w-full  h-[460px] bg-[pink]">
-                                这里应该是eCharts图
+                            </div>
+                            <div class="pl-[30px] w-full  h-[460px] ">
+                                <div class="w-[490px] h-[200px]  flex justify-between flex-wrap">
+                                    <div class="w-[245px] h-[100px] inline-flex items-center">
+                                        <svg class=" w-[40px] h-[40px] text-[#f0b548]" viewBox="0 0 2048 2048">
+                                            <use href="#contacts" />
+                                        </svg>
+                                        <div class="ml-[14px]  text-[18px]">
+                                            <p><span class="font-Oswald text-[24px]">131</span> &nbsp;个</p>
+                                            <p>支部党大会</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-[245px] h-[100px] inline-flex items-center">
+                                        <svg class=" w-[40px] h-[40px] text-[#f0b548]" viewBox="0 0 2048 2048">
+                                            <use href="#contacts" />
+                                        </svg>
+                                        <div class="ml-[14px]  text-[18px]">
+                                            <p><span class="font-Oswald text-[24px]">97</span> &nbsp;个</p>
+                                            <p>支部委员会</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-[245px] h-[100px] inline-flex items-center">
+                                        <svg class=" w-[40px] h-[40px] text-[#f0b548]" viewBox="0 0 2048 2048">
+                                            <use href="#contacts" />
+                                        </svg>
+                                        <div class="ml-[14px]  text-[18px]">
+                                            <p><span class="font-Oswald text-[24px]">220</span> &nbsp;个</p>
+                                            <p>党小组会</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-[245px] h-[100px] inline-flex items-center">
+                                        <svg class=" w-[40px] h-[40px] text-[#f0b548]" viewBox="0 0 2048 2048">
+                                            <use href="#contacts" />
+                                        </svg>
+                                        <div class="ml-[14px]  text-[18px]">
+                                            <p><span class="font-Oswald text-[24px]">659</span> &nbsp;个</p>
+                                            <p>党课</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-[490px] h-[260px]">
+                                    <!-- 会议统计 -->
+                                    <div class="w-[490px] h-[260px]" id="sessionCount"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class=" w-[1020px] h-[800px] bg-sky-500">中间区域</div>
-                    <div class="w-[490px] h-[800px] bg-lime-300">右侧区域</div>
+                    <!-- 中间区域 -->
+                    <div class=" w-[1020px] h-[800px]  relative">
+                        <!-- 国企党建 -->
+                        <div class="w-[380px] h-[65px] bg-title2 bg-cover bg-no-repeat ml-[330px] mt-[20px] relative">
+                            <img class="absolute right-[-20px] top-[-10px]"
+                                src="assets/images/partyComstruct/titlestar1.png" alt="">
+                            <img class="absolute" src="assets/images/partyComstruct/titlestar2.png" alt="">
+                            <img class="absolute top-[30px] right-[8px]" src="assets/images/partyComstruct/wystar.png"
+                                alt="">
+
+                            <img class="absolute  top-[-10px] left-[-100px] "
+                                src="assets/images/partyComstruct/star1.png" alt="">
+                            <img class="absolute top-[55px] left-[30px] " src="assets/images/partyComstruct/star2.png"
+                                alt="">
+                            <img class="absolute  top-[75px] left-[110px]" src="assets/images/partyComstruct/star3.png"
+                                alt="">
+                            <img class="absolute  top-[75px] left-[142px]" src="assets/images/partyComstruct/star4.png"
+                                alt="">
+                            <img class="absolute top-[60px] left-[160px] " src="assets/images/partyComstruct/star5.png"
+                                alt="">
+                        </div>
+                        <div class="w-[1020px] h-[715px] bg-huiguang bg-cover flex justify-between bg-no-repeat">
+                            <!-- 左侧 -->
+                            <div class="w-[280px] h-[600px]">
+                                <div
+                                    class="bg-1png bg-no-repeat bg-contain relative h-[85px] w-[250px] ml-[35px]  mt-[30px]">
+                                    <img class="absolute top-[8px] left-[35px]"
+                                        src="assets/images/partyComstruct/rleft.png" alt="">
+                                    <span
+                                        class="absolute top-[30px] left-[140px] font-Oswald text-[30px] text-[#ebb53f]">
+                                        165
+                                    </span>
+                                </div>
+                                <div
+                                    class="bg-2png bg-no-repeat bg-contain relative h-[85px] w-[250px] ml-[-10px] mt-[30px]">
+                                    <img class="absolute top-[8px] left-[35px]"
+                                        src="assets/images/partyComstruct/rleft.png" alt="">
+                                    <span
+                                        class="absolute top-[30px] left-[140px] font-Oswald text-[30px] text-[#ebb53f]">
+                                        165
+                                    </span>
+                                </div>
+                                <div
+                                    class="bg-3png bg-no-repeat bg-contain relative h-[85px] w-[250px] ml-[10px] mt-[30px]">
+                                    <img class="absolute top-[8px] left-[35px]"
+                                        src="assets/images/partyComstruct/rleft.png" alt="">
+                                    <span
+                                        class="absolute top-[30px] left-[140px] font-Oswald text-[30px] text-[#ebb53f]">
+                                        165
+                                    </span>
+                                </div>
+                                <div
+                                    class="bg-4png bg-no-repeat bg-contain relative h-[85px] w-[250px] ml-[30px] mt-[30px]">
+                                    <img class="absolute top-[8px] left-[35px]"
+                                        src="assets/images/partyComstruct/rleft.png" alt="">
+                                    <span
+                                        class="absolute top-[30px] left-[140px] font-Oswald text-[30px] text-[#ebb53f]">
+                                        165
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- 中间 -->
+                            <div class=" h-[600px] w-[460px] relative">
+
+                                <img class="absolute left-[90px] top-[60px]" src="assets/images/partyComstruct/q1.png"
+                                    alt="">
+                                <img class="absolute top-[70px] left-[-20px]" src="assets/images/partyComstruct/q2.png"
+                                    alt="">
+                                <img class="absolute left-0 bottom-[100px]"
+                                    src="assets/images/partyComstruct/glzleft.png" alt="">
+                                <img class="absolute right-0 bottom-[100px]"
+                                    src="assets/images/partyComstruct/lgzright.png" alt="">
+
+                            </div>
+                            <!-- 右侧 -->
+                            <div class="w-[280px] h-[600px]">
+                                <div
+                                    class="bg-r1png bg-no-repeat bg-contain indent-[42px] leading-[98px] relative h-[85px] w-[250px] ml-[-5px] mt-[30px]">
+                                    <img class="absolute top-0 left-[190px]"
+                                        src="assets/images/partyComstruct/rlight.png">
+                                    <span class=" font-Oswald text-[30px] text-[#ebb53f]">
+                                        165
+                                    </span>
+                                </div>
+                                <div
+                                    class="bg-r2png bg-no-repeat bg-contain indent-[42px] leading-[90px] relative h-[85px] w-[250px] ml-[15px] mt-[30px]">
+                                    <img class="absolute top-0 left-[190px]"
+                                        src="assets/images/partyComstruct/rlight.png">
+                                    <span class=" font-Oswald text-[30px] text-[#ebb53f]">
+                                        165
+                                    </span>
+                                </div>
+                                <div
+                                    class="bg-r3png bg-no-repeat bg-contain indent-[42px] leading-[98px] relative h-[85px] w-[250px] ml-[30px]  mt-[30px]">
+                                    <img class="absolute top-0 left-[190px]"
+                                        src="assets/images/partyComstruct/rlight.png">
+                                    <span class=" font-Oswald text-[30px] text-[#ebb53f]">
+                                        165
+                                    </span>
+                                </div>
+                                <div
+                                    class="bg-r4png bg-no-repeat bg-contain  indent-[42px] leading-[98px] relative h-[85px] w-[250px]  mt-[30px]">
+                                    <img class="absolute top-0 left-[190px]"
+                                        src="assets/images/partyComstruct/rlight.png">
+                                    <span class="font-Oswald text-[30px] text-[#ebb53f]">
+                                        165
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- 右侧区域 -->
+                    <div class="w-[490px] h-[800px] ">
+
+                        <div class="h-[380px]">
+                            <div class="h-[60px] text-[#f1f1f1] leading-[45px] indent-[280px]">
+                                <img class="absolute" style="transform: rotate3d(0, 1, 0, 180deg);"
+                                    src="assets/images/title.png" alt="">
+                                <span class="font-PangMenZhengDao text-[20px]">党员结构</span>
+                            </div>
+                            <div class="h-[320px]  px-[40px] relative">
+                                <div class="absolute top-[30px] left-[120px]">
+                                    <div class="text-[#e9da63] text-[24px] font-YouShe">群众</div>
+                                    <p class="text-[16px] text-[#f1f1f1]">
+                                        <span>23%</span>&nbsp;
+                                        <span>855人</span>
+                                    </p>
+                                </div>
+                                <div class="absolute top-[155px] left-[80px]">
+                                    <div class="text-[#5dc6cd] text-[24px] font-YouShe">无党派人士</div>
+                                    <p class="text-[16px] text-[#f1f1f1]">
+                                        <span>11%</span>&nbsp;
+                                        <span>204人</span>
+                                    </p>
+                                </div>
+                                <div class="absolute right-[70px] top-[10px]">
+                                    <div class="text-[#1c5795] text-[24px] font-YouShe">共产党员</div>
+                                    <p class="text-[16px] text-[#f1f1f1]">
+                                        <span>3601人</span>&nbsp;
+                                        <span>37%</span>
+                                    </p>
+                                </div>
+                                <div class="absolute right-[140px] bottom-[130px]">
+                                    <div class="text-[#65ba8f] text-[24px] font-YouShe">共青团员</div>
+                                    <p class="text-[16px] text-[#f1f1f1]">
+                                        <span>983人</span>&nbsp;
+                                        <span>29%</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="h-[420px]">
+                            <div class="h-[60px] text-[#f1f1f1] leading-[45px] indent-[280px]">
+                                <img class="absolute" style="transform: rotate3d(0, 1, 0, 180deg);"
+                                    src="assets/images/title.png" alt="">
+                                <span class="font-PangMenZhengDao text-[20px]">党的动态</span>
+                            </div>
+                            <div class="h-[360px]">
+                                <div class="w-[500px] text-[16px] text-[#f1f1f1] h-[60px] leading-[60px]  inline-flex">
+                                    <b class="text-[22px] text-[#489ea4]">党小组</b>
+                                    <div class="px-[14px] text-[#489ea4]">2021.11.12</div>
+                                    <p class="w-[300px] overflow-hidden text-ellipsis whitespace-nowrap ">
+                                        市国资党委组人一行到国润公司指导</p>
+                                </div>
+                                <div class="w-[500px] text-[16px] text-[#f1f1f1] h-[60px] leading-[60px]  inline-flex">
+                                    <b class="text-[22px] text-[#e5d530]">党总支</b>
+                                    <div class="px-[14px] ">2021.11.12</div>
+                                    <p class="w-[300px] overflow-hidden text-ellipsis whitespace-nowrap ">
+                                        《求是》杂志发表习近平总书记重要文章《毫不.......</p>
+                                </div>
+                                <div class="w-[500px] text-[16px] text-[#f1f1f1] h-[60px] leading-[60px]  inline-flex">
+                                    <b class="text-[22px] text-[#74e69a]">党支部</b>
+                                    <div class="px-[14px] ">2021.11.12</div>
+                                    <p class="w-[300px] overflow-hidden text-ellipsis whitespace-nowrap ">
+                                        集团党史学习教育“党史故事分享会”活动</p>
+                                </div>
+                                <div class="w-[500px] text-[16px] text-[#f1f1f1] h-[60px] leading-[60px]  inline-flex">
+                                    <b class="text-[22px] text-[#4195ee]">党小组</b>
+                                    <div class="px-[14px] ">2021.11.12</div>
+                                    <p class="w-[300px] overflow-hidden text-ellipsis whitespace-nowrap ">
+                                        集团党史学习教育“党史故事分享会”活动</p>
+                                </div>
+                                <div class="w-[500px] text-[16px] text-[#f1f1f1] h-[60px] leading-[60px]  inline-flex">
+                                    <b class="text-[22px] text-[#eddd32]">党总支</b>
+                                    <div class="px-[14px] ">2021.11.12</div>
+                                    <p class="w-[300px] overflow-hidden text-ellipsis whitespace-nowrap ">
+                                        市国资党委组人一行到国润公司指导</p>
+                                </div>
+                                <div class="w-[500px] text-[16px] text-[#f1f1f1] h-[60px] leading-[60px]  inline-flex">
+                                    <b class="text-[22px] text-[#4195ee]">党小组</b>
+                                    <div class="px-[14px] ">2021.11.12</div>
+                                    <p class="w-[300px] overflow-hidden text-ellipsis whitespace-nowrap ">
+                                        集团党史学习教育“党史故事分享会”活动</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                 </div>
             </div>
-
+            <img class="absolute bottom-[35px] W-[800px] h-[240px] z-20 left-[50%] translate-x-[-50%]"
+                src="assets/images/partyComstruct/dizuo.png" alt="">
             <!-- 背景+底部内容 -->
             <video class=" absolute bottom-0" autoplay muted loop src="assets/video/BG-grid.mp4"></video>
             <footer class=" absolute bottom-0 text-[#f1f1f1]">
@@ -87,5 +370,6 @@
     </div>
 
 </body>
+<script src="src/js/sessionCount.js"> </script>
 
 </html>
