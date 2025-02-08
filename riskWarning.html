@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>风险分析</title>
+    <link rel="stylesheet" href="src/style/common.css">
+
+    <script src="src/js/echarts.min.js"></script>
+    <script src="src/js/echarts-gl.min.js"></script>
+    <script src="src/js/echarts-liquidfill.min.js"></script>
+    <script src="src/js/d3.v7.min.js"></script>
+    <script src="src/lib/tailwindcss3.4.16.js"></script>
+    <script src="src/lib/tailwindConfig.js"></script>
+</head>
+
+<body>
+
+    <!-- svg图标库 -->
+    <symbol class="hidden">
+        <svg id="icon-trend" viewBox="0 0 48 48">
+            <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4">
+                <path stroke-linecap="round" d="M4 44h40" />
+                <path d="m4 26l8 2v10H4zm16-2l8-4v18h-8zm16-8l8-4v26h-8z" />
+                <path stroke-linecap="round" d="m4 18l8 2L44 4H34" />
+            </g>
+        </svg>
+        <svg id="toolbox" viewBox="0 0 256 256">
+            <path fill="currentColor"
+                d="M224 64h-48v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H32a16 16 0 0 0-16 16v28a4 4 0 0 0 4 4h44V96.27A8.17 8.17 0 0 1 71.47 88A8 8 0 0 1 80 96v16h96V96.27a8.17 8.17 0 0 1 7.47-8.27a8 8 0 0 1 8.53 8v16h44a4 4 0 0 0 4-4V80a16 16 0 0 0-16-16m-64 0H96v-8a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8Zm80 68v60a16 16 0 0 1-16 16H32a16 16 0 0 1-16-16v-60a4 4 0 0 1 4-4h44v16a8 8 0 0 0 8.53 8a8.17 8.17 0 0 0 7.47-8.27V128h96v16a8 8 0 0 0 8.53 8a8.17 8.17 0 0 0 7.47-8.25V128h44a4 4 0 0 1 4 4" />
+        </svg>
+        <svg id="trend-up" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M4.75 4a.75.75 0 0 0-1.5 0v14.5a2.25 2.25 0 0 0 2.25 2.25H20a.75.75 0 0 0 0-1.5H5.5a.75.75 0 0 1-.75-.75v-2.77l4.45-4.45l3.422 3.423a.75.75 0 0 0 1.06 0l4.315-4.315v1.729a.75.75 0 1 0 1.5 0V8.58a.75.75 0 0 0-.75-.75h-3.536a.75.75 0 0 0 0 1.5h1.722l-3.78 3.78L9.73 9.69a.75.75 0 0 0-1.06 0l-3.92 3.92z" />
+        </svg>
+    </symbol>
+    <!-- ================================ -->
+    <div class="w-[2000px] m-auto overflow-hidden bg-[#000] relative">
+        <!-- 头部 -->
+        <header>
+            <div class="header-left">
+                <span>国资总览</span>
+                <span>投资管理</span>
+                <span>经济运行</span>
+            </div>
+            <div class="header-center">数字企业大数据监管平台</div>
+            <div class="header-right">
+                <span>三重一大</span>
+                <span>党建管理</span>
+                <span class="text-[#f1f1f1]">风险分析</span>
+            </div>
+        </header>
+
+        <!-- 主体内容 -->
+        <div class="h-[850px] relative overflow-hidden ">
+            <!-- 主体内容区域 -->
+            <div class="w-[2000px] h-[800px] top-0 left-0 absolute z-20">
+                <div class="relative w-[2000px] h-[800px] inline-flex ">
+
+                    <!-- 左侧区域 -->
+                    <div class="w-[490px] h-[800px] text-[#f1f1f1]">
+                        <!-- 预警变动趋势 -->
+                        <div class="w-[490px] h-[360px] ">
+                            <div class="relative h-[60px] leading-[50px]  ">
+                                <img class="absolute top-0 left-0 h-[60px]" src="/assets/images/title.png" alt="">
+                                <span class=" font-PangMenZhengDao ml-[120px]">预警变动趋势</span>
+                            </div>
+                            <div class="w-[490px] h-[300px] ">
+                                <!-- 变动趋势的 eCharts图 -->
+                                <div id="changTrends" class="w-[490px] h-[300px]"></div>
+
+                            </div>
+                        </div>
+                        <!-- 行业预警分析 -->
+                        <div class="w-[490px] h-[440px] ">
+                            <div class="w-[490px] h-[160px] flex">
+                                <div class="flex-1 h-[160px] flex flex-col items-center justify-center">
+                                    <span class="font-Oswald text-[24px]">178</span>
+                                    <svg class="w-[80px] h-[80px] my-[16px] text-[#eae039]" viewBox="0 0 24 24">
+                                        <use href="#icon-trend" />
+                                    </svg>
+                                    <p class="text-[#eae039] font-PangMenZhengDao text-[28px]">工业</p>
+                                </div>
+                                <div class="flex-1 h-[160px] flex flex-col items-center justify-center">
+                                    <span class="font-Oswald text-[24px]">203</span>
+                                    <svg class="w-[80px] h-[80px] my-[16px] text-[#7bf7d4]" viewBox="0 0 24 24">
+                                        <use href="#toolbox" />
+                                    </svg>
+                                    <p class="text-[#7bf7d4] font-PangMenZhengDao text-[28px]">商贸</p>
+                                </div>
+                                <div class="flex-1 h-[160px] flex flex-col items-center justify-center">
+                                    <span class="font-Oswald text-[24px]">178</span>
+                                    <svg class="w-[80px] h-[80px] my-[16px] text-[#a6fafa]" viewBox="0 0 24 24">
+                                        <use href="#trend-up" />
+                                    </svg>
+                                    <p class="text-[#a6fafa] font-PangMenZhengDao text-[28px]">投资</p>
+                                </div>
+                            </div>
+
+                            <div class="w-[490px] h-[280px] inline-flex justify-between px-[35px]">
+
+                                <div class="w-[140px] h-[280px] ">
+                                    <div class="w-[140px] h-[70px]  px-[12px] flex justify-between items-center">
+                                        <div id="circle1" class="w-[60px] h-[60px] scale-[1.8] "></div>
+                                        <div class="text-[14px] text-[#f1f1f1]">
+                                            <p><span class="font-Oswald text-[20px] mr-[4px]">3</span>家</p>
+                                            <p>超预警线</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-[140px] h-[70px]  mt-[50px] px-[12px] flex justify-between items-center ">
+                                        <div id="circle2" class="w-[60px] h-[60px] scale-[1.8]"></div>
+                                        <div class="text-[14px] text-[#f1f1f1]">
+                                            <p><span class="font-Oswald text-[20px] mr-[4px]">12</span>家</p>
+                                            <p>超监管线</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-[140px] h-[280px] ">
+                                    <div class="w-[140px] h-[70px]  px-[12px] flex justify-between items-center">
+                                        <div id="circle3" class="w-[60px] h-[60px] scale-[1.8]"></div>
+                                        <div class="text-[14px] text-[#f1f1f1]">
+                                            <p><span class="font-Oswald text-[20px] mr-[4px]">2</span>家</p>
+                                            <p>超预警线</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-[140px] h-[70px]  mt-[50px] px-[12px] flex justify-between items-center ">
+                                        <div id="circle4" class="w-[60px] h-[60px] scale-[1.8]"></div>
+                                        <div class="text-[14px] text-[#f1f1f1]">
+                                            <p><span class="font-Oswald text-[20px] mr-[4px]">85</span>家</p>
+                                            <p>超监管线</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-[140px] h-[280px] ">
+                                    <div class="w-[140px] h-[70px]  px-[12px] flex justify-between items-center">
+                                        <div id="circle5" class="w-[60px] h-[60px] scale-[1.8]"></div>
+                                        <div class="text-[14px] text-[#f1f1f1]">
+                                            <p><span class="font-Oswald text-[20px] mr-[4px]">120</span>家</p>
+                                            <p>超预警线</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-[140px] h-[70px]  mt-[50px] px-[12px] flex justify-between items-center ">
+                                        <div id="circle6" class="w-[60px] h-[60px] scale-[1.8]"></div>
+                                        <div class="text-[14px] text-[#f1f1f1]">
+                                            <p><span class="font-Oswald text-[20px] mr-[4px]">10</span>家</p>
+                                            <p>超监管线</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 中间区域 -->
+                    <div class=" w-[1020px] h-[800px] perspective-normal  relative">
+                        <video class="absolute left-0 top-0 right-0 bottom-0 z-[-99] -rotate-180 " autoplay muted loop
+                            src="assets/video/matrix_numbs.mp4"></video>
+                        <div
+                            class="w-[300px] perspective-normal  relative h-[300px] bg-kvShield bg-no-repeat bg-cover mx-auto mt-[60px]">
+                            <img class="absolute top-[-90px] left-0 w-[450px] h-[450px]"
+                                style="transform: rotate3d(1,1,1,-78deg);" src="assets/images/kv-s2.png" alt="">
+                            <img class="absolute top-[-60px] left-0  w-[450px] h-[450px]"
+                                style="transform: rotate3d(0,1,1,88deg);" src="assets/images/kv-s2.png" alt="">
+                            <img class="absolute w-[300px] h-[200px] bottom-[-80px]" src="assets/images/kv-s1.png"
+                                alt="">
+                        </div>
+
+                        <img class="absolute w-[590px] left-[220px] h-[1060px] top-[-130px] z-[-96]"
+                            style="transform: rotateX(80deg);" src="assets/images/b1.png" alt="">
+                        <img class="absolute left-[50px] top-[10px] bottom-[-160px] z-[-98] "
+                            style="transform: rotateX(72deg);" src="assets/images/kv-i1.png" alt="">
+                        <img class="absolute left-[50px] bottom-[-140px] z-[-98] " style="transform: rotateX(72deg);"
+                            src="assets/images/kv-s2.png" alt="">
+
+                        <div
+                            class="w-[160px] h-[52px] leading-[52px] bg-kv-a1 bg-no-repeat bg-contain text-center text-[#f1f1f1]">
+                            <span class="font-PangMenZhengDao">速动比率 <b class="font-YouShe">3.5%</b></span>
+                        </div>
+
+                        <div
+                            class="absolute left-0 top-[570px] w-[160px] h-[52px] leading-[52px] bg-kv-a1 bg-no-repeat bg-contain text-center text-[#f1f1f1]">
+                            <span class="font-PangMenZhengDao">非流动比率 <b class="font-YouShe">1.1%</b></span>
+                        </div>
+
+                        <div
+                            class="absolute top-[680px] left-[220px] w-[160px] h-[52px] leading-[52px] bg-kv-a1 bg-no-repeat bg-contain text-center text-[#f1f1f1]">
+                            <span class="font-PangMenZhengDao">资产负债率 <b class="font-YouShe">1.2%</b></span>
+                        </div>
+
+                        <div
+                            class="absolute top-[720px] left-[450px] w-[160px] h-[52px] leading-[52px] bg-kv-a1 bg-no-repeat bg-contain text-center text-[#f1f1f1]">
+                            <span class="font-PangMenZhengDao">流动比率 <b class="font-YouShe">8.1%</b></span>
+                        </div>
+
+                        <div
+                            class="absolute top-[680px] left-[650px] w-[160px] h-[52px] leading-[52px] bg-kv-a1 bg-no-repeat bg-contain text-center text-[#f1f1f1]">
+                            <span class="font-PangMenZhengDao">担保余额 <b class="font-YouShe">314</b></span>
+                        </div>
+                        <div
+                            class="absolute right-0 top-[570px] w-[160px] h-[52px] leading-[52px] bg-kv-a1 bg-no-repeat bg-contain text-center text-[#f1f1f1]">
+                            <span class="font-PangMenZhengDao">净利润 <b class="font-YouShe">20.1%</b></span>
+                        </div>
+                        <div
+                            class="absolute right-0 top-[370px] w-[160px] h-[52px] leading-[52px] bg-kv-a1 bg-no-repeat bg-contain text-center text-[#f1f1f1]">
+                            <span class="font-PangMenZhengDao">现金流入 <b class="font-YouShe">1000</b></span>
+                        </div>
+
+                    </div>
+
+                    <!-- 右侧区域 -->
+                    <div class="w-[490px] h-[800px] text-[#f1f1f1] ">
+                        <div class="w-[490px] h-[360px]  ">
+                            <div class="h-[60px] text-[#f1f1f1] leading-[45px] indent-[240px]">
+                                <img class="absolute" style="transform: rotate3d(0, 1, 0, 180deg);"
+                                    src="assets/images/title.png" alt="">
+                                <span class="font-PangMenZhengDao text-[20px]">财务能力预警</span>
+                            </div>
+                            <div class="w-[490px] h-[300px] ">
+                                <!-- 雷达图 -->
+                                <div id="radarChart" class="w-[320px] h-[240px] mt-[20px]  float-left">
+                                </div>
+                                <div class=" w-[170px] h-[240px]  float-left mt-[20px] pr-[20px]">
+                                    <div class="h-[40px] leading-[40px] text-[18px] flex justify-between">盈利能力
+                                        <span class="text-[#f0a1a8] font-Oswald mx-[5px]">1578</span>
+                                        <span class="text-[yellow] font-Oswald  ">4289</span>
+                                    </div>
+                                    <div class="h-[40px] leading-[40px] text-[18px] flex justify-between ">
+                                        偿债能力
+                                        <span class="text-[#f0a1a8] font-Oswald mx-[5px]">1102</span>
+                                        <span class="text-[yellow] font-Oswald ">534</span>
+                                    </div>
+                                    <div class="h-[40px] leading-[40px] text-[18px] flex justify-between ">资产质量
+                                        <span class="text-[#f0a1a8] font-Oswald mx-[5px]">768</span>
+                                        <span class="text-[yellow] font-Oswald">765</span>
+                                    </div>
+                                    <div class="h-[40px] leading-[40px] text-[18px] flex justify-between ">经营增长
+                                        <span class="text-[#f0a1a8] font-Oswald mx-[5px]">4289</span>
+                                        <span class="text-[yellow] font-Oswald">1578</span>
+                                    </div>
+                                    <div class="h-[40px] leading-[40px] text-[18px] flex justify-between">成长能力
+                                        <span class="text-[#f0a1a8] font-Oswald mx-[5px]">165</span>
+                                        <span class="text-[yellow] font-Oswald">1102</span>
+                                    </div>
+                                    <div class="h-[40px] leading-[40px] text-[18px]  flex justify-between">财务风险
+                                        <span class="text-[#f0a1a8] font-Oswald mx-[5px]">769</span>
+                                        <span class="text-[yellow] font-Oswald">278</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-[490px] h-[420px]">
+                            <div class="h-[60px] text-[#f1f1f1] leading-[45px] indent-[240px]">
+                                <img class="absolute" style="transform: rotate3d(0, 1, 0, 180deg);"
+                                    src="assets/images/title.png" alt="">
+                                <span class="font-PangMenZhengDao text-[20px]">债券偿还</span>
+                            </div>
+                            <div class="w-[470px] h-[210px] ">
+                                <div class="w-[470px] inline-flex h-[36px]">
+                                    <div class="w-[25%] text-start font-Oswald ">月内到期</div>
+                                    <div class="w-[25%] text-center font-Oswald text-[24px] text-[#efef00]">142.8</div>
+                                    <div class="w-[20%] text-center font-Oswald text-[24px] text-[#efef00]">142.8</div>
+                                    <div class="w-[15%] text-center font-Oswald text-[24px] text-[#efef00]">100%</div>
+                                    <div class="w-[15%] text-center font-Oswald text-[24px] text-[#efef00]">20</div>
+                                </div>
+                                <table class="w-[470px] h-[174px] text-[16px]">
+                                    <thead>
+                                        <th class="font-normal"></th>
+                                        <th class="font-normal">本月偿还(亿)</th>
+                                        <th class="font-normal">累计(亿)</th>
+                                        <th class="font-normal">占比</th>
+                                        <th class="font-normal">笔数</th>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr>
+                                            <td class="text-start w-[25%]">所属集团</td>
+                                            <td class="w-[25%]">24.3</td>
+                                            <td class="w-[20%]">24.3</td>
+                                            <td class="w-[15%]">24.3%</td>
+                                            <td class="w-[15%]">5</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start  w-[25%]">所属集团所属</td>
+                                            <td class="w-[25%]">24.3</td>
+                                            <td class="w-[20%]">24.3</td>
+                                            <td class="w-[15%]">24.3%</td>
+                                            <td class="w-[15%]">5</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start  w-[25%]">所属集团所属集团</td>
+                                            <td class="w-[25%]">24.3</td>
+                                            <td class="w-[20%]">24.3</td>
+                                            <td class="w-[15%]">24.3%</td>
+                                            <td class="w-[15%]">5</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="w-[470px] h-[150px] flex flex-col">
+                                <div class="flex-1 h-[50px] leading-[50px] inline-flex ">
+                                    <div class="w-[25%] text-start font-Oswald ">本月新法</div>
+                                    <div class="w-[25%] text-center font-Oswald text-[24px] text-[#62d9fd]">142.8</div>
+                                    <div class="w-[20%] text-center font-Oswald text-[24px] text-[#62d9fd]">142.8</div>
+                                    <div class="w-[15%] text-center font-Oswald text-[24px] text-[#62d9fd]">100%</div>
+                                    <div class="w-[15%] text-center font-Oswald text-[24px] text-[#62d9fd]">20</div>
+                                </div>
+                                <div class="flex-1 h-[50px] leading-[50px] inline-flex ">
+                                    <div class="w-[25%] text-start font-Oswald ">三个月到期</div>
+                                    <div class="w-[25%] text-center font-Oswald text-[24px] text-[#62d9fd]">142.8</div>
+                                    <div class="w-[20%] text-center font-Oswald text-[24px] text-[#62d9fd]">142.8</div>
+                                    <div class="w-[15%] text-center font-Oswald text-[24px] text-[#62d9fd]">100%</div>
+                                    <div class="w-[15%] text-center font-Oswald text-[24px] text-[#62d9fd]">20</div>
+                                </div>
+                                <div class="flex-1 h-[50px] leading-[50px] inline-flex ">
+                                    <div class="w-[25%] text-start font-Oswald ">一年到期</div>
+                                    <div class="w-[25%] text-center font-Oswald text-[24px] text-[#62d9fd]">142.8</div>
+                                    <div class="w-[20%] text-center font-Oswald text-[24px] text-[#62d9fd]">142.8</div>
+                                    <div class="w-[15%] text-center font-Oswald text-[24px] text-[#62d9fd]">100%</div>
+                                    <div class="w-[15%] text-center font-Oswald text-[24px] text-[#62d9fd]">20</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 背景+底部内容 -->
+            <video class="absolute bottom-0 z-[2]" autoplay muted loop src="assets/video/BG-grid.mp4"></video>
+            <footer class=" absolute bottom-0 z-[3] text-[#f1f1f1]">
+                <div class="footerInfo">
+                    <div class="time">202501</div>
+                    <div class="location">集团总部</div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+<script src="src/js/circles.js"></script>
+<script src="src/js/radarChart.js"></script>
+<script src="src/js/changTrends.js"></script>
+
+</html>

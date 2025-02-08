@@ -23,7 +23,7 @@ tailwind.config = {
                 'r2png': "url('assets/images/partyComstruct/r2.png')",
                 'r3png': "url('assets/images/partyComstruct/r3.png')",
                 'r4png': "url('assets/images/partyComstruct/r4.png')",
-
+                'kvShield': "url('assets/images/kv-shield.png')",
 
             }
         }

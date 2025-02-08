@@ -16,7 +16,7 @@
     // eCharts图表配置项
 
     var turnoverRateEChart = echarts.init(document.getElementById('turnoverRate-graph'));
-
+    
 
     const offsetX = 20;
     const offsetY = 10;
