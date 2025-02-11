@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>visual数字企业大数据监管平台</title>
+    <title>经济运行</title>
     <link rel="stylesheet" href="src/style/common.css">
     <script src="src/js/echarts.min.js"></script>
     <script src="src/js/echarts-gl.min.js"></script>
@@ -66,7 +66,7 @@
         .bg {
             position: relative;
         }
-        
+
         .bg-top {
             position: absolute;
             top: 0;
@@ -229,9 +229,10 @@
         }
 
         .dR-ins-gold-con {
+            margin-top: 30px;
             width: 80px;
             height: 80px;
-            background: url(assets/images/黄底座.png) no-repeat;
+            background: url(assets/main/3/huangIcon.png) no-repeat;
             background-position: 0px;
         }
 
@@ -435,6 +436,10 @@
             height: 280px;
         }
 
+        .right-con-graph-R div img {
+            margin-bottom: 30px;
+        }
+
         /* =============排行榜部分========== */
         .rankList-info {
             display: inline-flex;
@@ -520,15 +525,21 @@
     <div class="container">
         <header>
             <div class="header-left">
-                <span>国资总览</span>
-                <span>投资管理</span>
-                <span>经济运行</span>
+                <span><a style="text-decoration: none;padding-top: 24px; color: #4e769f;"
+                        href="overviewOfAssets.html">国资总览</a></span>
+                <span><a style="text-decoration: none;padding-top: 24px; color: #4e769f;"
+                        href="InvestmentManager.html">投资管理</a></span>
+                <span><a style="text-decoration: none; color: #f1f1f1;; padding-top: 24px;"
+                        href="index.html">经济运行</a></span>
             </div>
             <div class="header-center">数字企业大数据监管平台</div>
             <div class="header-right">
-                <span>三重一大</span>
-                <span>党建管理</span>
-                <span>风险分析</span>
+                <span><a style="text-decoration: none;padding-top: 24px; color: #4e769f;"
+                        href="tripleAndOneBig.html">三重一大</a></span>
+                <span><a style="text-decoration: none;padding-top: 24px; color: #4e769f;"
+                        href="PartyBuildingManagement.html">党建管理</a></span>
+                <span><a style="text-decoration: none;padding-top: 24px; color: #4e769f;"
+                        href="riskWarning.html">风险分析</a></span>
             </div>
         </header>
 
@@ -553,7 +564,7 @@
                             </div>
                             <div class="dR-ins-gold">
                                 <div class="dR-ins-gold-con">
-                                    <img class="yellow-icon" src="assets/images/黄icon.png" alt="">
+                                    <!-- <img class="yellow-icon" src="assets/images/黄icon.png" alt=""> -->
                                 </div>
                             </div>
                             <div class="dR-ins-trend">
@@ -661,7 +672,7 @@
                         </div>
                         <!-- 双折线图标 -->
                         <div id="doubleDiscount" style="width: 510px; height: 250px;">
-                            
+
                         </div>
                     </div>
                 </div>

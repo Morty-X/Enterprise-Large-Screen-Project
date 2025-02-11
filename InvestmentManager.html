@@ -82,15 +82,21 @@
             <!-- 头部 -->
             <header>
                 <div class="header-left">
-                    <span>国资总览</span>
-                    <span class="text-[#f1f1f1]">投资管理</span>
-                    <span>经济运行</span>
+                    <span><a style="text-decoration: none;padding-top: 24px; color: #4e769f;"
+                            href="overviewOfAssets.html">国资总览</a></span>
+                    <span><a style="text-decoration: none;padding-top: 24px; color: #f1f1f1;"
+                            href="InvestmentManager.html">投资管理</a></span>
+                    <span><a style="text-decoration: none; color: #4e769f;; padding-top: 24px;"
+                            href="index.html">经济运行</a></span>
                 </div>
                 <div class="header-center">数字企业大数据监管平台</div>
                 <div class="header-right">
-                    <span>三重一大</span>
-                    <span>党建管理</span>
-                    <span>风险分析</span>
+                    <span><a style="text-decoration: none;padding-top: 24px; color: #4e769f;"
+                            href="tripleAndOneBig.html">三重一大</a></span>
+                    <span><a style="text-decoration: none;padding-top: 24px; color: #4e769f;"
+                            href="PartyBuildingManagement.html">党建管理</a></span>
+                    <span><a style="text-decoration: none;padding-top: 24px; color: #4e769f;"
+                            href="riskWarning.html">风险分析</a></span>
                 </div>
             </header>
 
@@ -112,20 +118,33 @@
                                 <div class="w-[510px] h-[195px]  inline-flex ">
                                     <div class="w-[200px] h-[195px] flex flex-col items-center justify-center">
                                         <p class="text-[#f1f1f1]"><b class="font-PangMenZhengDao">投资总额</b>
-                                            <span class="text-[28px] text-[#f6e64e] pl-[10px]">6.98</span>
+                                            <span class="text-[30px] text-[#f6e64e] pl-[10px] font-Oswald">6.98</span>
                                             <span class="text-[#f6e64e]">亿元</span>
                                         </p>
-                                        <img src="assets/images/waver.png" alt="">
+                                        <div id="pianoWaves" class=" w-[200px] h-[75px]">
+                                        </div>
                                     </div>
 
-                                    <div class="w-[300px] h-[190px] flex flex-col items-center justify-center">
-                                        <img class="" src="assets/images/inner&outer.png" alt="">
+                                    <div
+                                        class="w-[300px] h-[190px] flex  text-[#f1f1f1] items-center gap-2justify-center">
+                                        <div
+                                            class="w-[120px] h-[120px]  flex flex-col justify-center items-center bg-jingNei bg-cover bg-no-repeat">
+                                            <p><span class="text-[28px] font-Oswald">55<sub>%</sub> </span></p>
+                                            <div class=" mb-[45px]">境内</div>
+                                        </div>
+                                        <div
+                                            class="w-[120px] h-[120px]  flex flex-col justify-center items-center bg-jingWai bg-cover bg-no-repeat">
+                                            <p><span class="text-[28px] font-Oswald">45<sub>%</sub> </span></p>
+                                            <div class=" mb-[45px]">境外</div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- 第二行 -->
-                                <div class="w-[510px] h-[195px]  inline-flex  text-[#f1f1f1] ">
-                                    <div class="h-[195px] w-[200px] flex flex-col items-center justify-center ">
+                                <div
+                                    class="w-[510px] h-[150px] mt-[50px] translate-x-[-10px] inline-flex  text-[#f1f1f1] bg-touRuBG bg-contain bg-no-repeat ">
+                                    <div class="h-[120px] w-[200px] flex flex-col items-center"
+                                        style="transform: translateX(48px) translateY(-40px);">
                                         <h2 class="text-[#3990d4] text-[28px] font-Oswald">12,057</h2>
                                         <p>境内资金投入(万元)</p>
                                         <div class="w-[138px] flex justify-between">
@@ -140,8 +159,8 @@
                                         </div>
                                     </div>
 
-                                    <div
-                                        class="h-[195px] w-[200px] flex flex-col items-center justify-center  ml-[70px]">
+                                    <div class="h-[120px] w-[200px] flex flex-col items-center"
+                                        style="transform: translateX(68px) translateY(-40px);">
                                         <h2 class="text-[#eed16b]  text-[28px] font-Oswald">12,057</h2>
                                         <p>境内资金投入(万元)</p>
                                         <div class="w-[138px] flex justify-between">
@@ -163,7 +182,7 @@
                                 class="w-[510px] h-[60px] bg-title bg-no-repeat bg-cover font-PangMenZhengDao text-[#f1f1f1] indent-[120px] leading-[60px]">
                                 投资领域分布</div>
                             <div class="h-[240px] inline-flex text-[#f1f1f1]">
-                                <div class="w-[290px] h-[240px] bg-red-300">
+                                <div class="w-[290px] h-[240px]">
 
                                     <div class="w-[280px] h-[240px] relative">
                                         <div class="absolute right-0 z-10 w-[180px] h-[40px] leading-[40px]  ">
@@ -237,7 +256,7 @@
 
                     <!-- 中间区域 -->
                     <div class="w-[980px] h-[750px]  relative ">
-                        <div class="w-[600px] h-[600px] absolute left-[50%] top-[50px] translate-x-[-300px]">
+                        <div class="w-[600px] h-[600px] absolute z-10 left-[50%] top-[50px] translate-x-[-300px]">
                             <!-- 3d地图 -->
                             <div id="3d-globe" class="w-[600px] h-[600px]">
                             </div>
@@ -247,6 +266,13 @@
                         <div class="w-[980px] h-[400px] absolute top-[330px] left-[210px]">
                             <img class="w-[580px]" src="assets/images/kv-s1.png" alt="">
                         </div>
+
+                        <!-- 蓝色圆环 -->
+                        <div class="w-[580px] h-[400px] absolute top-[120px] left-[190px] "
+                            style="transform: rotateX(60deg) rotateY(20deg);">
+                            <img class="w-[580px]" src="assets/images/kv-i2.png" alt="">
+                        </div>
+
 
                         <!-- 投入与项目 -->
                         <div
@@ -286,16 +312,17 @@
                             </div>
                             <div class="w-[510px] h-[210px] inline-flex">
                                 <!--    投资达成分析里面内容  -->
-                                <div class="w-[255px] h-[210px] pl-[45px] flex items-center">
-                                    <img class="w-[200px] h-[200px]" src="assets/images/investFinish.png" alt="">
+                                <div
+                                    class="w-[210px] h-[210px]  ml-[30px] text-[#f1f1f1] text-[30px] relative  bg-tzdcfx bg-contain bg-no-repeat">
+                                    <span class="font-Oswald absolute top-[50px] left-[45px]">4.5<sub>%</sub></span>
                                 </div>
                                 <div class="w-[255px] h-[210px]">
-                                    <div class="text-[16px] text-[#f1f1f1]  h-[70px] leading-[70px]">
-
-                                        <svg class="inline-block w-[24px] h-[24px] mr-[6px] text-[#d4c92b] viewBox=" 0 0
+                                    <div class="text-[16px] text-[#f1f1f1]  inline-flex  items-center h-[70px]">
+                                        <div class="inline-block w-[24px] h-[24px] bg-tzdcfx1 bg-cover "></div>
+                                        <!-- <svg class="inline-block w-[24px] h-[24px] mr-[6px] text-[#d4c92b] viewBox=" 0 0
                                             24 24">
                                             <use href="#bill" />
-                                        </svg>
+                                        </svg> -->
                                         计划投入资金
                                         <span
                                             class="w-[50px] text-right text-[24px] font-Oswald text-[#d4c92b]">903.12</span>亿元
@@ -346,7 +373,7 @@
                     </div>
                 </div>
 
-                
+
                 <!-- 背景 -->
                 <div class="w-[2000px] h-[750px] relative">
                     <div class="absolute top-0 left-0 bottom-0  right-0" style="perspective: 500px;">
@@ -374,5 +401,6 @@
 <script src="src/js/hill.js"></script>
 <script src="src/js/planFinish.js"></script>
 <script src="src/js/circular-pro.js"></script>
+<script src="src/js/piano-waves.js"></script>
 
 </html>

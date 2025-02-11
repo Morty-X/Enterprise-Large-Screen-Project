@@ -16,7 +16,7 @@
     // eCharts图表配置项
 
     var turnoverRateEChart = echarts.init(document.getElementById('turnoverRate-graph'));
-    
+
 
     const offsetX = 20;
     const offsetY = 10;
@@ -131,7 +131,7 @@
             type: "value",
             axisLabel: {
                 color: '#fff'
-            }
+            },
         },
         // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
         series: [
@@ -253,7 +253,6 @@
                 }
 
             },
-
         ]
 
     };

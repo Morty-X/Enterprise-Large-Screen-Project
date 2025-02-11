@@ -10,11 +10,12 @@
     var config = { // 扫描线条配置
         lineWidth: 0.5, // 扫描线条宽度
         color: "#00FFC2", // 线条颜色
+        // color: "red",
         levels: 1,
         intensity: 3, // 强度
         threshold: 0.01
     }
-
+    
     var canvas = document.createElement("canvas");
     canvas.width = 4096;
     canvas.height = 2048;

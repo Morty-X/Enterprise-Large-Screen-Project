@@ -38,7 +38,7 @@
     option = {
         backgroundColor: 'black',
         grid: {
-            left: '15%', top: '15%', right: '20%', bottom: '10%'
+            left: '18%', top: '15%', right: '20%', bottom: '10%'
         },
         xAxis: {
             type: 'value',

@@ -61,6 +61,7 @@
         backgroundColor: '#020B19',
         legend: {
             show: true,
+            icon: 'circle',
             textStyle: {
                 color: '#fff'
             },
@@ -115,7 +116,13 @@
             type: "value",
             axisLabel: {
                 color: '#fff'
-            }
+            },
+            splitLine: {
+                show: false,
+                // lineStyle: {
+                //     color: 'red'
+                // }
+            },
         },
         // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
         series: [
